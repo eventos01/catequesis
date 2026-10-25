@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Parroquia Santa Maria Micaela//Invitacion Catequesis//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:catequesis-micaela-2026@guadalajara.es
+DTSTAMP:20261025T160000Z
+SUMMARY:Catequesis Jóvenes y Adultos - "Venid a mí"
+DTSTART;TZID=Europe/Madrid:20261026T200000
+DTEND;TZID=Europe/Madrid:20261026T210000
+RRULE:FREQ=WEEKLY;BYDAY=MO,TH;COUNT=4
+LOCATION:Parroquia de Santa María Micaela (Salones parroquiales)\, Avda. Santa María Micaela\, 15\, Guadalajara
+DESCRIPTION:"Venid a mí todos los que estáis fatigados y sobrecargados\, y yo os proporcionaré descanso" (Mt 11\, 28).\n\nLunes y jueves a las 20:00 h en los salones parroquiales. Entrada libre.
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio (faltan 2 horas): Hoy a las 20:00 h Catequesis "Venid a mí" en Parroquia Sta. María Micaela
+END:VALARM
+END:VEVENT
+END:VCALENDAR

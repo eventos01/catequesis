@@ -97,41 +97,6 @@
       margin-bottom: -52.5%;
     }
 
-    /* Aviso de privacidad y tipo de invitación colocado DEBAJO de la imagen de la Virgen */
-    .privacy-banner-below {
-      margin: 14px 16px 4px;
-      background-color: var(--privacy-bg);
-      border: 1.5px solid rgba(30, 86, 49, 0.35);
-      color: var(--privacy-green);
-      border-radius: 12px;
-      padding: 10px 13px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.79rem;
-      line-height: 1.38;
-      text-align: left;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    .privacy-banner-below svg {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      margin-top: 1px;
-      color: var(--privacy-green);
-    }
-
-    .privacy-banner-below strong {
-      font-weight: 800;
-      display: block;
-      margin-bottom: 2px;
-      font-size: 0.81rem;
-      letter-spacing: 0.01em;
-    }
-
     /* Marca de agua ("Logo subliminal") fiel a la imagen original sello-camino.png */
     .subliminal-watermark {
       position: absolute;
@@ -149,9 +114,9 @@
       z-index: 0;
     }
 
-    /* Cuerpo del cartel principal */
+    /* Cuerpo del cartel principal: Arriba "Venid a mí" y el resto de texto */
     .flyer-body {
-      padding: 14px 20px 18px;
+      padding: 18px 20px 14px;
       text-align: center;
       position: relative;
       z-index: 1;
@@ -242,7 +207,7 @@
       display: block;
     }
 
-    /* 2. Botón para ver/descargar la Carta del Párroco D. Pedro Moreno Magro */
+    /* Botón para ver/descargar la Carta del Párroco D. Pedro Moreno Magro */
     .parish-letter-btn {
       width: 100%;
       background: linear-gradient(135deg, #fffdf9 0%, #f3e8ce 100%);
@@ -311,7 +276,42 @@
       flex-shrink: 0;
     }
 
-    /* Modal para leer o descargar la Carta del Párroco */
+    /* Bloque de Invitación Personal y Privacidad situado DEBAJO del bloque "Venid a mí" y convocatoria */
+    .privacy-banner-below {
+      margin: 0 20px 16px;
+      background-color: var(--privacy-bg);
+      border: 1.5px solid rgba(30, 86, 49, 0.35);
+      color: var(--privacy-green);
+      border-radius: 12px;
+      padding: 10px 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.79rem;
+      line-height: 1.38;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .privacy-banner-below svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      color: var(--privacy-green);
+    }
+
+    .privacy-banner-below strong {
+      font-weight: 800;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.81rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Modal para leer o descargar la Carta del Párroco (FONDO BLANCO PURO) */
     .letter-modal-backdrop {
       display: none;
       position: fixed;
@@ -331,7 +331,7 @@
     .letter-modal {
       width: 100%;
       max-width: 460px;
-      background-color: #fcf9f2;
+      background-color: #ffffff;
       border: 2px solid var(--gold-accent);
       border-radius: 18px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.35);
@@ -373,13 +373,14 @@
     }
 
     .letter-modal-body {
+      background-color: #ffffff;
       padding: 18px 18px 16px;
       max-height: 68vh;
       overflow-y: auto;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.07rem;
       line-height: 1.48;
-      color: #1f1a15;
+      color: #1a1612;
     }
 
     .letter-modal-body p {
@@ -404,15 +405,16 @@
       align-items: center;
       justify-content: center;
       gap: 18px;
+      background-color: #ffffff;
     }
 
-    /* Sello original de la Parroquia de Santa María Micaela sin fondo (fusión de tinta sobre el papel) */
+    /* Sello original de la Parroquia de Santa María Micaela sobre el fondo blanco */
     .parish-stamp-img {
-      width: 112px;
-      height: 112px;
+      width: 114px;
+      height: 114px;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: contrast(1.12) saturate(1.15);
+      filter: contrast(1.08) saturate(1.1);
       transform: rotate(-4deg);
       flex-shrink: 0;
     }
@@ -428,8 +430,8 @@
 
     .letter-modal-footer {
       padding: 12px 16px;
-      background-color: #f1e7cf;
-      border-top: 1px solid #d5c5a3;
+      background-color: #f7f4ec;
+      border-top: 1px solid #e2d6bc;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -444,19 +446,19 @@
 
     .dialogue-prompt {
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .dialogue-prompt h2 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: var(--teal-dark);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .dialogue-prompt p {
-      font-size: 0.83rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
@@ -753,8 +755,15 @@
       border: 1.5px solid #cbb68c;
     }
 
+    .calendar-dual-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      width: 100%;
+    }
+
     .calendar-subnote {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
       text-align: center;
       margin-top: 2px;
@@ -846,18 +855,6 @@
       </div>
     </div>
 
-    <!-- Aviso manifiesto de Privacidad y Tipo de Invitación DEBAJO de la imagen -->
-    <div class="privacy-banner-below" role="region" aria-label="Garantía de privacidad">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        <path d="m9 12 2 2 4-4"/>
-      </svg>
-      <div>
-        <strong>INVITACIÓN PERSONAL · 100 % PRIVADA Y SIN DATOS</strong>
-        Esta página es exclusivamente una invitación abierta. No solicita ni recopila teléfonos, datos personales ni registra qué botón pulsas. Todo se visualiza en tu pantalla sin rastro alguno.
-      </div>
-    </div>
-
     <!-- Marca de agua ("logo subliminal") usando exactamente sello-camino.png -->
     <img
       class="subliminal-watermark"
@@ -867,7 +864,7 @@
       aria-hidden="true"
     />
 
-    <!-- Cartel y Lema de la Convocatoria -->
+    <!-- 2. ARRIBA: "Venid a mí" y el resto de texto de la convocatoria -->
     <section class="flyer-body">
       <h1 class="lema-title">“Venid a mí”</h1>
       <p class="lema-verse">
@@ -910,7 +907,7 @@
         </div>
       </div>
 
-      <!-- 2. Botón debajo del motivo de la invitación para ver/descargar Carta_D_Pedro.pdf -->
+      <!-- Botón debajo del motivo de la invitación para ver/descargar Carta_D_Pedro.pdf -->
       <button type="button" class="parish-letter-btn" onclick="openParishLetter()">
         <div class="parish-letter-left">
           <div class="parish-letter-icon">
@@ -931,11 +928,23 @@
       </button>
     </section>
 
-    <!-- 3. Diálogo Interactivo con colapsar/expandir al volver a pulsar -->
+    <!-- 3. DEBAJO: Bloque de la invitación personal y garantía de 0% datos -->
+    <div class="privacy-banner-below" role="region" aria-label="Garantía de privacidad">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+      <div>
+        <strong>INVITACIÓN PERSONAL · 100 % PRIVADA Y SIN DATOS</strong>
+        Esta página es exclusivamente una invitación abierta. No solicita ni recopila teléfonos, datos personales ni registra qué botón pulsas. Todo se visualiza en tu pantalla sin rastro alguno.
+      </div>
+    </div>
+
+    <!-- 4. Diálogo Interactivo: Conserva únicamente "Una palabra para ti" y "Pulsa una opción" -->
     <section class="dialogue-section" aria-label="Diálogo interactivo">
       <div class="dialogue-prompt">
         <h2>Una palabra para ti</h2>
-        <p>Pulsa una opción para desplegar su respuesta (o vuelve a pulsarla para cerrarla):</p>
+        <p>Pulsa una opción</p>
       </div>
 
       <div class="options-grid">
@@ -967,14 +976,18 @@
             </div>
 
             <div class="step-3-derivation derivation-card">
-              <p><strong>Te esperamos con las puertas abiertas:</strong> pulsa abajo para abrir directamente la creación del evento en el calendario de tu móvil.</p>
+              <p><strong>Te esperamos con las puertas abiertas:</strong> añade directamente el evento periódico (lunes y jueves 20:00 h, 4 sesiones) en tu calendario:</p>
               <div class="action-buttons">
-                <button type="button" class="action-btn btn-calendar" onclick="openDirectCalendar()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  Crear evento en mi Calendario (Lunes y Jueves · máx. 4 veces)
-                </button>
+                <div class="calendar-dual-row">
+                  <a class="action-btn btn-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Catequesis+J%C3%B3venes+y+Adultos+-+%22Venid+a+m%C3%AD%22&dates=20261026T200000/20261026T210000&ctz=Europe/Madrid&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO,TH;COUNT%3D4&location=Parroquia+de+Santa+Mar%C3%ADa+Micaela,+Avda.+Santa+Mar%C3%ADa+Micaela,+15,+Guadalajara&details=%C2%ABVenid+a+m%C3%AD+todos+los+que+est%C3%A1is+fatigados+y+sobrecargados,+y+yo+os+proporcionar%C3%A9+descanso%C2%BB+(Mt+11,+28).+Lunes+y+jueves+a+las+20:00+h+en+los+salones+parroquiales." target="_blank" rel="noopener noreferrer">
+                    Google Calendar (Android)
+                  </a>
+                  <a class="action-btn btn-calendar" href="catequesis.ics">
+                    Calendario iPhone / Apple
+                  </a>
+                </div>
                 <div class="calendar-subnote">
-                  Abre directamente el calendario de tu móvil (Lunes y Jueves a las 20:00 h, con aviso 2 h antes, hasta 4 sesiones).
+                  Lunes y jueves a las 20:00 h (4 sesiones, con aviso previo de 2 h en iPhone y recordatorio en Google Calendar).
                 </div>
 
                 <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
@@ -1035,10 +1048,14 @@
                   Compartir esta invitación con los míos por WhatsApp
                 </button>
 
-                <button type="button" class="action-btn btn-calendar" onclick="openDirectCalendar()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  También quiero asistir (Crear evento en mi Calendario)
-                </button>
+                <div class="calendar-dual-row">
+                  <a class="action-btn btn-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Catequesis+J%C3%B3venes+y+Adultos+-+%22Venid+a+m%C3%AD%22&dates=20261026T200000/20261026T210000&ctz=Europe/Madrid&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO,TH;COUNT%3D4&location=Parroquia+de+Santa+Mar%C3%ADa+Micaela,+Avda.+Santa+Mar%C3%ADa+Micaela,+15,+Guadalajara&details=%C2%ABVenid+a+m%C3%AD+todos+los+que+est%C3%A1is+fatigados+y+sobrecargados,+y+yo+os+proporcionar%C3%A9+descanso%C2%BB+(Mt+11,+28).+Lunes+y+jueves+a+las+20:00+h+en+los+salones+parroquiales." target="_blank" rel="noopener noreferrer">
+                    Agendar (Android)
+                  </a>
+                  <a class="action-btn btn-calendar" href="catequesis.ics">
+                    Agendar (iPhone)
+                  </a>
+                </div>
 
                 <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
                   Ver ubicación de los salones parroquiales
@@ -1099,12 +1116,16 @@
                 No hace falta apuntarse a nada ni asistir siempre. Ven un lunes o un jueves a las 20:00 h, escucha 45 minutos en libertad y <strong>comprueba por ti mismo que el brazo de Dios no se ha secado (Ex 6, 6)</strong>.
               </p>
               <div class="action-buttons">
-                <button type="button" class="action-btn btn-calendar" onclick="openDirectCalendar()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  Crear evento en mi Calendario (Lunes y Jueves · máx. 4 veces)
-                </button>
+                <div class="calendar-dual-row">
+                  <a class="action-btn btn-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Catequesis+J%C3%B3venes+y+Adultos+-+%22Venid+a+m%C3%AD%22&dates=20261026T200000/20261026T210000&ctz=Europe/Madrid&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO,TH;COUNT%3D4&location=Parroquia+de+Santa+Mar%C3%ADa+Micaela,+Avda.+Santa+Mar%C3%ADa+Micaela,+15,+Guadalajara&details=%C2%ABVenid+a+m%C3%AD+todos+los+que+est%C3%A1is+fatigados+y+sobrecargados,+y+yo+os+proporcionar%C3%A9+descanso%C2%BB+(Mt+11,+28).+Lunes+y+jueves+a+las+20:00+h+en+los+salones+parroquiales." target="_blank" rel="noopener noreferrer">
+                    Google Calendar (Android)
+                  </a>
+                  <a class="action-btn btn-calendar" href="catequesis.ics">
+                    Calendario iPhone / Apple
+                  </a>
+                </div>
                 <div class="calendar-subnote">
-                  Abre directamente el calendario de tu móvil con aviso 2 h antes (18:00 h), hasta 4 veces.
+                  Lunes y jueves a las 20:00 h (4 sesiones, con aviso 2 h antes en iPhone).
                 </div>
 
                 <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
@@ -1185,9 +1206,14 @@
                     <p style="margin-bottom: 8px;">
                       En los salones parroquiales nadie te va a preguntar quién eres ni te va a pedir nada. Si quieres dejarte un aviso discreto en el calendario de tu móvil por si te animas:
                     </p>
-                    <button type="button" class="action-btn btn-calendar" style="margin-bottom: 6px;" onclick="openDirectCalendar()">
-                      Crear evento en mi Calendario (Lunes y Jueves · máx. 4 veces)
-                    </button>
+                    <div class="calendar-dual-row" style="margin-bottom: 6px;">
+                      <a class="action-btn btn-calendar" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Catequesis+J%C3%B3venes+y+Adultos+-+%22Venid+a+m%C3%AD%22&dates=20261026T200000/20261026T210000&ctz=Europe/Madrid&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO,TH;COUNT%3D4&location=Parroquia+de+Santa+Mar%C3%ADa+Micaela,+Avda.+Santa+Mar%C3%ADa+Micaela,+15,+Guadalajara&details=%C2%ABVenid+a+m%C3%AD+todos+los+que+est%C3%A1is+fatigados+y+sobrecargados,+y+yo+os+proporcionar%C3%A9+descanso%C2%BB+(Mt+11,+28).+Lunes+y+jueves+a+las+20:00+h+en+los+salones+parroquiales." target="_blank" rel="noopener noreferrer">
+                        Android
+                      </a>
+                      <a class="action-btn btn-calendar" href="catequesis.ics">
+                        iPhone
+                      </a>
+                    </div>
                     <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
                       Ver ubicación (Avda. Sta. María Micaela, 15)
                     </a>
@@ -1217,7 +1243,7 @@
 
   </main>
 
-  <!-- MODAL DE LA CARTA DEL PÁRROCO D. PEDRO MORENO MAGRO (Con el sello original de la parroquia adaptado sin fondo) -->
+  <!-- MODAL DE LA CARTA DEL PÁRROCO D. PEDRO MORENO MAGRO (Con fondo blanco puro y sello original de la parroquia) -->
   <div id="parish-letter-modal" class="letter-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="letter-modal-title" onclick="closeParishLetterOnBackdrop(event)">
     <div class="letter-modal">
       <div class="letter-modal-header">
@@ -1330,54 +1356,6 @@
         setTimeout(() => {
           btnElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 80);
-      }
-    }
-
-    function openDirectCalendar() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-      if (isIOS) {
-        const icsLines = [
-          'BEGIN:VCALENDAR',
-          'VERSION:2.0',
-          'PRODID:-//Parroquia Santa Maria Micaela//Invitacion Catequesis//ES',
-          'CALSCALE:GREGORIAN',
-          'METHOD:PUBLISH',
-          'BEGIN:VEVENT',
-          'UID:catequesis-micaela-2026@guadalajara.local',
-          'SUMMARY:Catequesis Jóvenes y Adultos - "Venid a mí"',
-          'DTSTART:20261026T200000',
-          'DTEND:20261026T210000',
-          'RRULE:FREQ=WEEKLY;BYDAY=MO,TH;COUNT=4',
-          'LOCATION:Parroquia de Santa María Micaela (Salones parroquiales)\\, Avda. Santa María Micaela\\, 15\\, Guadalajara',
-          'DESCRIPTION:"Venid a mí todos los que estáis fatigados y sobrecargados\\, y yo os proporcionaré descanso" (Mt 11\\, 28). Lunes y jueves a las 20:00 h en los salones parroquiales.',
-          'BEGIN:VALARM',
-          'TRIGGER:-PT2H',
-          'ACTION:DISPLAY',
-          'DESCRIPTION:Recordatorio (faltan 2 horas): Hoy a las 20:00 h Catequesis "Venid a mí" en Parroquia Sta. María Micaela',
-          'END:VALARM',
-          'END:VEVENT',
-          'END:VCALENDAR'
-        ];
-        const icsDataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsLines.join('\r\n'));
-        window.location.href = icsDataUri;
-      } else {
-        const title = encodeURIComponent('Catequesis Jóvenes y Adultos · "Venid a mí" (Avisar 2h antes)');
-        const dates = '20261026T200000/20261026T210000';
-        const location = encodeURIComponent('Parroquia de Santa María Micaela, Avda. Santa María Micaela, 15, Guadalajara');
-        const details = encodeURIComponent('«Venid a mí todos los que estáis fatigados y sobrecargados, y yo os proporcionaré descanso» (Mt 11, 28).\n\nLunes y jueves a las 20:00 h en los salones parroquiales. Entrada libre.\n(Recordatorio programado para 4 sesiones: lunes y jueves).');
-        const recur = encodeURIComponent('RRULE:FREQ=WEEKLY;BYDAY=MO,TH;COUNT=4');
-
-        const gcalUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-          + '&text=' + title
-          + '&dates=' + dates
-          + '&ctz=Europe/Madrid'
-          + '&location=' + location
-          + '&details=' + details
-          + '&recur=' + recur;
-
-        window.open(gcalUrl, '_blank', 'noopener,noreferrer');
       }
     }
 
