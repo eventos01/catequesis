@@ -829,6 +829,40 @@
       color: var(--brown-schedule);
     }
 
+    /* Aviso inteligente que SOLO se muestra si se detecta bloqueo de IP (Cloudflare / fútbol) */
+    .isp-block-notice {
+      display: none;
+      margin: 8px auto 12px;
+      max-width: 410px;
+      background-color: #fff9eb;
+      border: 1px solid #d8a949;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 0.75rem;
+      color: #594115;
+      line-height: 1.42;
+      text-align: left;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .isp-block-notice.visible {
+      display: block;
+      animation: fadeSlideUp 0.3s ease forwards;
+    }
+
+    .isp-block-notice strong {
+      color: #4a3208;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.77rem;
+    }
+
+    .isp-block-notice a {
+      color: var(--teal-title);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
     .seal-img-wrap {
       width: 78px;
       height: 78px;
@@ -1248,7 +1282,11 @@
     <!-- Pie de tarjeta con Sello del Camino fiel a sello-camino.png y Garantía de Privacidad -->
     <footer class="card-footer">
       <div class="more-camino-wrap">
-        <a class="more-camino-link" href="https://neocatechumenaleiter.org/" target="_blank" rel="noopener noreferrer">Quisiera saber más del Camino</a>
+        <a class="more-camino-link" href="https://neocatechumenaleiter.org/" target="_blank" rel="noopener noreferrer" onclick="checkCaminoSiteReachability(true)">Quisiera saber más del Camino</a>
+        <div id="camino-isp-notice" class="isp-block-notice" role="status" aria-live="polite">
+          <strong>⚠️ Aviso técnico sobre el acceso a la web oficial:</strong>
+          En este momento tu operadora de internet está bloqueando temporalmente el acceso a <em>neocatechumenaleiter.org</em> debido a los bloqueos de direcciones IP compartidas de <strong>Cloudflare</strong> que aplican las operadoras en España durante las retransmisiones de fútbol. La web oficial es totalmente segura y vuelve a estar operativa en cuanto finalizan los encuentros deportivos (mientras dure el bloqueo de tu operadora, también puedes consultar la información general en <a href="https://es.wikipedia.org/wiki/Camino_Neocatecumenal" target="_blank" rel="noopener noreferrer">Wikipedia</a>).
+        </div>
       </div>
       <div class="seal-img-wrap" title="Camino Neocatecumenal · Palabra · Liturgia · Comunidad">
         <img
@@ -1395,6 +1433,39 @@
       const waUrl = 'https://wa.me/?text=' + encodeURIComponent(message);
       window.open(waUrl, '_blank', 'noopener,noreferrer');
     }
+
+    /* Comprueba en tiempo real desde el navegador del usuario si neocatechumenaleiter.org responde o está bloqueada por la operadora (Cloudflare/fútbol). Si responde bien, el aviso permanece oculto; si hay bloqueo, muestra el aviso. */
+    function checkCaminoSiteReachability(fromClick) {
+      const notice = document.getElementById('camino-isp-notice');
+      if (!notice) return;
+
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timeoutId = setTimeout(() => {
+        if (controller) controller.abort();
+        notice.classList.add('visible');
+      }, 2800);
+
+      fetch('https://neocatechumenaleiter.org/favicon.ico?_=' + Date.now(), {
+        mode: 'no-cors',
+        cache: 'no-store',
+        signal: controller ? controller.signal : undefined
+      })
+        .then(() => {
+          clearTimeout(timeoutId);
+          notice.classList.remove('visible');
+        })
+        .catch(() => {
+          clearTimeout(timeoutId);
+          notice.classList.add('visible');
+          if (fromClick) {
+            notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      checkCaminoSiteReachability(false);
+    });
   </script>
 </body>
 </html>
