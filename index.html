@@ -92,7 +92,7 @@
       display: block;
     }
 
-    /* Si la imagen incluye la franja blanca inferior con el sello, esta clase oculta solo esa franja blanca dejando el cuadro de la Virgen y el Niño 100% entero */
+    /* Si la imagen incluye la franja blanca inferior con el sello, oculta solo esa franja blanca dejando el cuadro de la Virgen y el Niño 100% entero */
     .icon-frame.crop-bottom-seal img {
       margin-bottom: -52.5%;
     }
@@ -132,19 +132,21 @@
       letter-spacing: 0.01em;
     }
 
-    /* Marca de agua ("Logo subliminal") con el sello octogonal del Camino (SVG vectorial integrado + imagen) */
+    /* Marca de agua ("Logo subliminal") fiel a la imagen original sello-camino.png */
     .subliminal-watermark {
       position: absolute;
       left: 50%;
-      top: 54%;
+      top: 55%;
       transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
-      opacity: 0.11;
+      width: 295px;
+      height: 295px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.15);
+      opacity: 0.13;
       pointer-events: none;
       user-select: none;
       z-index: 0;
-      color: #2c2013;
     }
 
     /* Cuerpo del cartel principal */
@@ -395,40 +397,33 @@
     }
 
     .letter-signature-row {
-      margin-top: 16px;
+      margin-top: 14px;
       padding-top: 12px;
       border-top: 1px dashed rgba(176, 130, 44, 0.4);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content: center;
+      gap: 18px;
     }
 
-    .parish-stamp-badge {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #4f6482;
-      border: 1.5px solid rgba(79, 100, 130, 0.45);
-      border-radius: 50%;
-      width: 86px;
-      height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8px;
-      line-height: 1.15;
+    /* Sello original de la Parroquia de Santa María Micaela sin fondo (fusión de tinta sobre el papel) */
+    .parish-stamp-img {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.12) saturate(1.15);
+      transform: rotate(-4deg);
       flex-shrink: 0;
     }
 
     .signature-text {
       font-style: italic;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       color: #1c1610;
-      text-align: right;
+      text-align: left;
+      line-height: 1.3;
     }
 
     .letter-modal-footer {
@@ -572,11 +567,13 @@
       bottom: -14px;
       width: 175px;
       height: 175px;
-      opacity: 0.11;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.15);
+      opacity: 0.12;
       pointer-events: none;
       user-select: none;
       z-index: 0;
-      color: #2c2013;
     }
 
     .response-panel > *:not(.panel-watermark) {
@@ -631,18 +628,12 @@
 
     .scripture-text {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
       font-style: italic;
       color: #1c1610;
-      line-height: 1.44;
+      line-height: 1.38;
       margin-bottom: 8px;
-      text-align: left;
-    }
-
-    .scripture-text strong {
-      color: var(--teal-dark);
-      font-weight: 700;
     }
 
     .scripture-ref {
@@ -650,38 +641,6 @@
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--brown-schedule);
-      text-align: right;
-    }
-
-    /* Bloque adicional para el texto íntegro de Mc 5, 1-20 en el Bloque 2 */
-    .full-gospel-box {
-      background: rgba(241, 231, 207, 0.55);
-      border: 1px solid rgba(176, 130, 44, 0.35);
-      border-radius: 11px;
-      padding: 12px 14px;
-      margin-top: 12px;
-      text-align: left;
-    }
-
-    .full-gospel-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--teal-title);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .full-gospel-box p {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.12rem;
-      font-style: italic;
-      font-weight: 600;
-      line-height: 1.44;
-      color: #231c14;
-      margin-bottom: 6px;
     }
 
     .reflection-text {
@@ -802,19 +761,6 @@
       line-height: 1.35;
     }
 
-    .alt-calendar-link {
-      display: inline-block;
-      margin-top: 3px;
-      color: var(--teal-title);
-      font-weight: 700;
-      text-decoration: underline;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 0.75rem;
-      font-family: inherit;
-    }
-
     .details-Accordion {
       margin-top: 10px;
       border-top: 1px solid rgba(176, 130, 44, 0.25);
@@ -846,7 +792,7 @@
       border-radius: 8px;
     }
 
-    /* Pie con Sello del Camino Neocatecumenal y Nota de Privacidad */
+    /* Pie con Sello del Camino Neocatecumenal fiel a sello-camino.png y Nota de Privacidad */
     .card-footer {
       background-color: #efe4cc;
       border-top: 1px solid #d5c5a3;
@@ -863,13 +809,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #1f1912;
     }
 
-    .seal-img-wrap svg {
+    .seal-img-wrap img {
       width: 100%;
       height: 100%;
-      opacity: 0.85;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: contrast(1.12);
+      opacity: 0.88;
     }
 
     .footer-privacy-note {
@@ -882,72 +830,6 @@
   </style>
 </head>
 <body>
-
-  <!-- DEFINICIÓN VECTORIAL DEL SELLO DEL CAMINO NEOCATECUMENAL (Siempre visible en cualquier servidor sin fallos de ruta) -->
-  <svg style="display:none;" aria-hidden="true">
-    <symbol id="sello-camino-vector" viewBox="0 0 240 240">
-      <!-- Octógono exterior e interior -->
-      <polygon points="73,8 167,8 232,73 232,167 167,232 73,232 8,167 8,73" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="miter"/>
-      <polygon points="76,14 164,14 226,76 226,164 164,226 76,226 14,164 14,76" fill="none" stroke="currentColor" stroke-width="2"/>
-      <polygon points="84,36 156,36 204,84 204,156 156,204 84,204 36,156 36,84" fill="none" stroke="currentColor" stroke-width="3.5"/>
-      <polygon points="87,41 153,41 199,87 199,153 153,199 87,199 41,153 41,87" fill="none" stroke="currentColor" stroke-width="1.6"/>
-
-      <!-- Textos perimetrales del sello -->
-      <text x="120" y="31" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="14" fill="currentColor" letter-spacing="1">* AVE MARIA *</text>
-      <text x="120" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="13.5" fill="currentColor" letter-spacing="0.8">* COMUNIDAD *</text>
-
-      <!-- PALABRA (izquierda) -->
-      <g font-family="Arial, sans-serif" font-weight="800" font-size="12.5" fill="currentColor" text-anchor="middle">
-        <text x="25" y="96">PA</text>
-        <text x="25" y="112">LA</text>
-        <text x="25" y="128">BRA</text>
-        <text x="25" y="148" font-size="15">*</text>
-      </g>
-
-      <!-- LITURGIA (abajo-izquierda) -->
-      <text x="53" y="192" transform="rotate(45 53 192)" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="12" fill="currentColor">LITURGIA</text>
-
-      <!-- NUEVA EVANGELIZACION (derecha) -->
-      <text x="186" y="54" transform="rotate(45 186 54)" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="11.5" fill="currentColor">NUEVA</text>
-      <g font-family="Arial, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">
-        <text x="214" y="94">E</text>
-        <text x="213" y="108">VAN</text>
-        <text x="213" y="122">GE</text>
-        <text x="213" y="136">LI</text>
-        <text x="211" y="150">ZA</text>
-        <text x="200" y="172">CI</text>
-        <text x="187" y="187">ON</text>
-      </g>
-
-      <!-- Paloma del Espíritu Santo arriba -->
-      <path d="M98,62 C103,55 110,56 115,63 C126,64 138,63 150,57 L156,52 L153,61 L159,65 L148,66 C137,71 124,74 115,72 L112,79 L118,79 M101,60 L95,62 L100,64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-
-      <!-- Cruz central y escaleras de la fuente bautismal -->
-      <line x1="120" y1="81" x2="120" y2="188" stroke="currentColor" stroke-width="4.5"/>
-      <line x1="80" y1="103" x2="160" y2="103" stroke="currentColor" stroke-width="4.5"/>
-
-      <!-- Escaleras izquierda y derecha hacia las aguas del Bautismo -->
-      <polyline points="48,118 65,118 65,134 78,134 78,150 91,150 91,166 104,166 104,186" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <polyline points="192,118 175,118 175,134 162,134 162,150 149,150 149,166 136,166 136,186" fill="none" stroke="currentColor" stroke-width="2.5"/>
-
-      <!-- Ondas del agua bautismal en la base -->
-      <path d="M105,176 Q112,172 120,176 T135,176" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M105,182 Q112,178 120,182 T135,182" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M105,188 Q112,184 120,188 T135,188" fill="none" stroke="currentColor" stroke-width="2"/>
-
-      <!-- Texto central CAMINO NEOCATECUMENAL -->
-      <g font-family="Arial, sans-serif" font-weight="900" font-size="14.5" fill="currentColor">
-        <text x="63" y="96">* CAM</text>
-        <text x="126" y="96">INO *</text>
-        <text x="80" y="122">NEO</text>
-        <text x="126" y="122">CATE</text>
-        <text x="90" y="142">CU</text>
-        <text x="126" y="142">ME</text>
-        <text x="95" y="161">NA</text>
-        <text x="126" y="161">L</text>
-      </g>
-    </symbol>
-  </svg>
 
   <!-- TARJETA PRINCIPAL DE LA INVITACIÓN -->
   <main class="card-container">
@@ -976,10 +858,14 @@
       </div>
     </div>
 
-    <!-- Marca de agua ("logo subliminal") del Sello del Camino en el fondo del pergamino -->
-    <svg class="subliminal-watermark" aria-hidden="true">
-      <use href="#sello-camino-vector"></use>
-    </svg>
+    <!-- Marca de agua ("logo subliminal") usando exactamente sello-camino.png -->
+    <img
+      class="subliminal-watermark"
+      src="sello-camino.png"
+      onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}"
+      alt=""
+      aria-hidden="true"
+    />
 
     <!-- Cartel y Lema de la Convocatoria -->
     <section class="flyer-body">
@@ -1055,7 +941,7 @@
       <div class="options-grid">
 
         <!-- =========================================================
-             BLOQUE 1: Me interesa. Quiero asistir o saber más (Mc 16, 1-8)
+             BLOQUE 1: Me interesa. Quiero asistir o saber más
              ========================================================= -->
         <div class="option-item">
           <button type="button" class="option-btn" aria-expanded="false" onclick="toggleOption('b1a', this)">
@@ -1065,12 +951,11 @@
           </button>
 
           <div id="panel-b1a" class="response-panel" role="region">
-            <svg class="panel-watermark" aria-hidden="true"><use href="#sello-camino-vector"></use></svg>
+            <img class="panel-watermark" src="sello-camino.png" onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}" alt="" aria-hidden="true" />
             <div class="step-1-word scripture-box">
-              <span class="word-badge">La Palabra · Mc 16, 1-8</span>
+              <span class="word-badge">La Palabra</span>
               <p class="scripture-text">
-                «Pasado el sábado, María Magdalena, María la de Santiago y Salomé compraron aromas para ir a embalsamar a Jesús. Y muy temprano, el primer día de la semana, al salir el sol, fueron al sepulcro. Y se decían unas a otras: “¿Quién nos correrá la piedra de la entrada del sepulcro?”. Al mirar, vieron que la piedra estaba corrida y eso que era muy grande. Entraron en el sepulcro y vieron a un joven sentado a la derecha, vestido de blanco. Y quedaron aterradas.<br /><br />
-                <strong>Él les dijo: “No tengáis miedo. ¿Buscáis a Jesús el Nazareno, el crucificado? Ha resucitado. No está aquí. Mirad el sitio donde lo pusieron.</strong> Pero id a decir a sus discípulos y a Pedro: ‘Él va por delante de vosotros a Galilea. Allí lo veréis, como os dijo’”. Ellas salieron huyendo del sepulcro, pues estaban temblando y fuera de sí. Y no dijeron nada a nadie, del miedo que tenían.»
+                «Él les dijo: “No tengáis miedo. ¿Buscáis a Jesús el Nazareno, el crucificado? Ha resucitado. No está aquí. Mirad el sitio donde lo pusieron.”»
               </p>
               <span class="scripture-ref">(Mc 16, 1-8)</span>
             </div>
@@ -1109,7 +994,7 @@
                   <span>+</span>
                 </summary>
                 <div class="accordion-content">
-                  Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad.
+                  Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad. <strong>Para quien lo pudiera necesitar, se prestará servicio de cuidadora para niños y/o necesidades especiales.</strong>
                 </div>
               </details>
             </div>
@@ -1117,7 +1002,7 @@
         </div>
 
         <!-- =========================================================
-             BLOQUE 2: Ya soy creyente / practicante (Mc 5, 19 + Texto íntegro Mc 5, 1-20)
+             BLOQUE 2: Ya soy creyente / practicante
              ========================================================= -->
         <div class="option-item">
           <button type="button" class="option-btn" aria-expanded="false" onclick="toggleOption('b1b', this)">
@@ -1127,31 +1012,13 @@
           </button>
 
           <div id="panel-b1b" class="response-panel" role="region">
-            <svg class="panel-watermark" aria-hidden="true"><use href="#sello-camino-vector"></use></svg>
+            <img class="panel-watermark" src="sello-camino.png" onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}" alt="" aria-hidden="true" />
             <div class="step-1-word scripture-box">
-              <span class="word-badge">La Palabra · Mc 5, 19</span>
-              <p class="scripture-text" style="text-align: center;">
-                <strong>«Pero no se lo permitió, sino que le dijo: “Vete a casa con los tuyos y anúnciales lo que el Señor ha hecho contigo y que ha tenido misericordia de ti.”»</strong>
+              <span class="word-badge">La Palabra</span>
+              <p class="scripture-text">
+                «Pero no se lo permitió, sino que le dijo: “Vete a casa con los tuyos y anúnciales lo que el Señor ha hecho contigo y que ha tenido misericordia de ti.”»
               </p>
-              <span class="scripture-ref">(Mc 5, 19)</span>
-
-              <!-- Texto íntegro añadido: Mc 5, 1-20 -->
-              <div class="full-gospel-box">
-                <span class="full-gospel-title">Texto íntegro · Mc 5, 1-20</span>
-                <p>
-                  «Llegaron a la otra orilla del mar, a la región de los gerasenos. Apenas desembarcó, le salió al encuentro de entre los sepulcros un hombre poseído de espíritu inmundo. Y es que vivía entre los sepulcros; ni con cadenas podía ya nadie sujetarlo; muchas veces lo habían sujetado con cepos y cadenas, pero él rompía las cadenas y destrozaba los cepos, y nadie tenía fuerza para domarlo. Se pasaba el día y la noche en los sepulcros y en los montes, gritando e hiriéndose con piedras.
-                </p>
-                <p>
-                  Viendo de lejos a Jesús, echó a correr, se postró ante él y gritó a voz en cuello: “¿Qué tienes que ver conmigo, Jesús, Hijo de Dios Altísimo? Por Dios te lo pido, no me atormentes”. Porque Jesús le estaba diciendo: “Espíritu inmundo, sal de este hombre”. Y le preguntó: “¿Cómo te llamas?”. Él respondió: “Me llamo Legión, porque somos muchos”. Y le rogaba con insistencia que no los expulsara de aquella comarca.
-                </p>
-                <p>
-                  Había cerca una gran piara de cerdos paciendo en la falda del monte. Los espíritus le rogaron: “Envíanos a los cerdos para que entremos en ellos”. Él se lo permitió. Los espíritus inmundos salieron del hombre y entraron en los cerdos; y la piara, unos dos mil, se abalanzó acantilado abajo al mar y se ahogó en el mar. Los porqueros huyeron y dieron la noticia en la ciudad y en los campos. Y la gente fue a ver qué había pasado. Se acercaron a Jesús y vieron al endemoniado sentado, vestido y en su sano juicio, el mismo que había tenido la Legión; y les entró miedo. Los que lo habían visto les contaron lo que había pasado al endemoniado y lo de los cerdos. Ellos empezaron a rogarle que se alejara de su comarca.
-                </p>
-                <p>
-                  Mientras se embarcaba, el que había estado posesionado le rogaba que le permitiese estar con él. <strong>Pero no se lo permitió, sino que le dijo: “Vete a casa con los tuyos y anúnciales lo que el Señor ha hecho contigo y que ha tenido misericordia de ti”</strong>. El hombre se marchó y empezó a proclamar por la Decápolis lo que Jesús había hecho con él; y todos se admiraban.»
-                </p>
-                <span class="scripture-ref">(Mc 5, 1-20)</span>
-              </div>
+              <span class="scripture-ref">(Mc 5, 19-20 · Texto íntegro: Mc 5, 1-20)</span>
             </div>
 
             <div class="step-2-reflection">
@@ -1177,12 +1044,22 @@
                   Ver ubicación de los salones parroquiales
                 </a>
               </div>
+
+              <details class="details-Accordion">
+                <summary>
+                  <span>¿Cómo son estos encuentros?</span>
+                  <span>+</span>
+                </summary>
+                <div class="accordion-content">
+                  Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad. <strong>Para quien lo pudiera necesitar, se prestará servicio de cuidadora para niños y/o necesidades especiales.</strong>
+                </div>
+              </details>
             </div>
           </div>
         </div>
 
         <!-- =========================================================
-             BLOQUE 3: Indecisos / ocupados / sin líos (Mc 3, 1-6)
+             BLOQUE 3: Indecisos / ocupados / sin líos
              ========================================================= -->
         <div class="option-item">
           <button type="button" class="option-btn" aria-expanded="false" onclick="toggleOption('b2', this)">
@@ -1192,12 +1069,12 @@
           </button>
 
           <div id="panel-b2" class="response-panel" role="region">
-            <svg class="panel-watermark" aria-hidden="true"><use href="#sello-camino-vector"></use></svg>
-            <!-- Golpe visual 1: La Palabra (Mc 3, 1-6) -->
+            <img class="panel-watermark" src="sello-camino.png" onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}" alt="" aria-hidden="true" />
+            <!-- Golpe visual 1: La Palabra original intacta con referencia (Mc 3, 1-6) -->
             <div class="step-1-word scripture-box">
-              <span class="word-badge">La Palabra · Mc 3, 1-6</span>
+              <span class="word-badge">La Palabra</span>
               <p class="scripture-text">
-                «Entró otra vez en la sinagoga y <strong>había allí un hombre con la mano paralizada</strong>. Estaban al acecho a ver si lo curaba en sábado para acusarlo. Jesús dice al hombre de la mano paralizada: <strong>“Levántate y ponte ahí en medio”</strong>. Y a ellos les pregunta: “¿Qué está permitido en sábado?, ¿hacer el bien o el mal?, ¿salvar una vida o destruirla?”. Pero ellos se quedaron callados. Entristecido por la dureza de su corazón, los miró con ira y <strong>dice al hombre: “Extiende la mano”. La extendió y su mano quedó restablecida</strong>. En cuanto salieron, los fariseos se confabularon con los herodianos para ver cómo eliminarían a Jesús.»
+                «(...) había allí un hombre con la mano paralizada. (...) “Levántate y ponte ahí en medio.” (...) Dice al hombre: “Extiende la mano.” La extendió y su mano quedó restablecida.»
               </p>
               <span class="scripture-ref">(Mc 3, 1-6)</span>
             </div>
@@ -1238,12 +1115,22 @@
                   Compartir esta invitación por WhatsApp
                 </button>
               </div>
+
+              <details class="details-Accordion">
+                <summary>
+                  <span>¿Cómo son estos encuentros?</span>
+                  <span>+</span>
+                </summary>
+                <div class="accordion-content">
+                  Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad. <strong>Para quien lo pudiera necesitar, se prestará servicio de cuidadora para niños y/o necesidades especiales.</strong>
+                </div>
+              </details>
             </div>
           </div>
         </div>
 
         <!-- =========================================================
-             BLOQUE 4: La Iglesia no es mi sitio (Lc 5, 12-16)
+             BLOQUE 4: La Iglesia no es mi sitio
              ========================================================= -->
         <div class="option-item">
           <button type="button" class="option-btn" aria-expanded="false" onclick="toggleOption('b3', this)">
@@ -1253,11 +1140,11 @@
           </button>
 
           <div id="panel-b3" class="response-panel" role="region">
-            <svg class="panel-watermark" aria-hidden="true"><use href="#sello-camino-vector"></use></svg>
+            <img class="panel-watermark" src="sello-camino.png" onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}" alt="" aria-hidden="true" />
             <div class="step-1-word scripture-box">
-              <span class="word-badge">La Palabra · Lc 5, 12-16</span>
+              <span class="word-badge">La Palabra</span>
               <p class="scripture-text">
-                «Estando Jesús en una de las ciudades, se presentó un hombre lleno de lepra; al ver a Jesús cayó rostro en tierra y le suplicó diciendo: “Señor, si quieres, puedes limpiarme”. Y extendiendo la mano, lo tocó diciendo: “Quiero, queda limpio”. Y enseguida desapareció de él la lepra. Él le ordenó que no se lo dijera a nadie y añadió: “Ve, muéstrate al sacerdote y haz la ofrenda por tu purificación, según mandó Moisés, para que les sirva de testimonio”. Su fama se extendía cada vez más y acudía mucha gente a oírlo y a que los curara de sus enfermedades. <strong>Él, por su parte, solía retirarse a despoblado y se entregaba a la oración.</strong>»
+                «Él, por su parte, solía retirarse a despoblado y se entregaba a la oración.»
               </p>
               <span class="scripture-ref">(Lc 5, 12-16)</span>
             </div>
@@ -1278,6 +1165,16 @@
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
                   Enviar esta invitación a alguien que estimo
                 </button>
+
+                <details class="details-Accordion">
+                  <summary>
+                    <span>¿Cómo son estos encuentros?</span>
+                    <span>+</span>
+                  </summary>
+                  <div class="accordion-content">
+                    Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad. <strong>Para quien lo pudiera necesitar, se prestará servicio de cuidadora para niños y/o necesidades especiales.</strong>
+                  </div>
+                </details>
 
                 <details class="details-Accordion">
                   <summary>
@@ -1304,12 +1201,14 @@
       </div>
     </section>
 
-    <!-- Pie de tarjeta con Sello del Camino y Garantía de Privacidad -->
+    <!-- Pie de tarjeta con Sello del Camino fiel a sello-camino.png y Garantía de Privacidad -->
     <footer class="card-footer">
       <div class="seal-img-wrap" title="Camino Neocatecumenal · Palabra · Liturgia · Comunidad">
-        <svg aria-label="Sello del Camino Neocatecumenal">
-          <use href="#sello-camino-vector"></use>
-        </svg>
+        <img
+          src="sello-camino.png"
+          onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_camino.png';}"
+          alt="Sello del Camino Neocatecumenal"
+        />
       </div>
       <p class="footer-privacy-note">
         <strong>Garantía de Confidencialidad:</strong> Esta invitación interactiva funciona íntegramente en tu navegador sin conexión a bases de datos. No almacena cookies, ni recopila teléfonos, ni registra tu interacción.
@@ -1318,7 +1217,7 @@
 
   </main>
 
-  <!-- MODAL DE LA CARTA DEL PÁRROCO D. PEDRO MORENO MAGRO (Vinculado a Carta_D_Pedro.pdf) -->
+  <!-- MODAL DE LA CARTA DEL PÁRROCO D. PEDRO MORENO MAGRO (Con el sello original de la parroquia adaptado sin fondo) -->
   <div id="parish-letter-modal" class="letter-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="letter-modal-title" onclick="closeParishLetterOnBackdrop(event)">
     <div class="letter-modal">
       <div class="letter-modal-header">
@@ -1355,9 +1254,12 @@
         </p>
 
         <div class="letter-signature-row">
-          <div class="parish-stamp-badge">
-            Parroquia de Santa María Micaela<br />Guadalajara
-          </div>
+          <img
+            class="parish-stamp-img"
+            src="sello-parroquia.png"
+            onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='sello_parroquia.png';}"
+            alt="Sello de la Parroquia de Santa María Micaela - Guadalajara"
+          />
           <div class="signature-text">
             Pedro Moreno<br />
             <span style="font-size: 0.92rem; font-weight: 600;">Párroco Sta. María Micaela</span>
@@ -1378,11 +1280,6 @@
   </div>
 
   <script>
-    /**
-     * 1. Ajusta automáticamente el encuadre de la Virgen:
-     * Si la imagen es el archivo vertical completo que incluye el sello blanco abajo (proporción > 1.55),
-     * oculta únicamente la franja blanca inferior para que el icono de la Virgen y el Niño se vea 100% entero.
-     */
     function adjustVirginCrop(imgEl) {
       const frame = document.getElementById('virgen-frame');
       if (!frame || !imgEl.naturalWidth) return;
@@ -1394,9 +1291,6 @@
       }
     }
 
-    /**
-     * 2. Abre y cierra el modal de la Carta del Párroco D. Pedro Moreno Magro
-     */
     function openParishLetter() {
       const modal = document.getElementById('parish-letter-modal');
       if (modal) modal.classList.add('open');
@@ -1413,9 +1307,6 @@
       }
     }
 
-    /**
-     * 3. Colapsa o expande el bloque de respuesta al pulsar el botón según su estado actual
-     */
     function toggleOption(panelKey, btnElement) {
       const targetPanel = document.getElementById('panel-' + panelKey);
       const isCurrentlyOpen = btnElement.classList.contains('active');
@@ -1442,19 +1333,11 @@
       }
     }
 
-    /**
-     * 4. Abre DIRECTAMENTE la pantalla de creación del evento según sea iPhone/iPad (iOS) o Android:
-     * - En Android (y ordenadores): remite directamente a la pantalla de creación de evento de Google Calendar
-     *   (que en móviles Android abre la app nativa de Calendario directamente con la recurrencia Lunes y Jueves, 4 sesiones, sin descargar ficheros).
-     * - En iPhone / iPad (iOS): abre directamente el diálogo nativo de Calendario de Apple mediante data URI (sin atributo download para que no pida guardar archivo),
-     *   con el aviso 2 horas antes (-PT2H) y repetición Lunes y Jueves (COUNT=4).
-     */
     function openDirectCalendar() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       if (isIOS) {
-        // En iOS: data:text/calendar sin atributo download abre directamente el visor nativo "Añadir al Calendario" de iPhone
         const icsLines = [
           'BEGIN:VCALENDAR',
           'VERSION:2.0',
@@ -1480,7 +1363,6 @@
         const icsDataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsLines.join('\r\n'));
         window.location.href = icsDataUri;
       } else {
-        // En Android: URL directa de creación de evento en el Calendario (sin descargar ningún archivo)
         const title = encodeURIComponent('Catequesis Jóvenes y Adultos · "Venid a mí" (Avisar 2h antes)');
         const dates = '20261026T200000/20261026T210000';
         const location = encodeURIComponent('Parroquia de Santa María Micaela, Avda. Santa María Micaela, 15, Guadalajara');
@@ -1499,9 +1381,6 @@
       }
     }
 
-    /**
-     * Comparte la invitación por WhatsApp con un mensaje respetuoso y adaptado
-     */
     function shareWhatsApp(mode) {
       const currentUrl = window.location.href.startsWith('http') ? window.location.href : '';
       let message = '';
