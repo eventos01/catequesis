@@ -811,6 +811,24 @@
       z-index: 1;
     }
 
+    .more-camino-wrap {
+      margin-bottom: 10px;
+    }
+
+    .more-camino-link {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--teal-title);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .more-camino-link:hover {
+      color: var(--brown-schedule);
+    }
+
     .seal-img-wrap {
       width: 78px;
       height: 78px;
@@ -1229,6 +1247,9 @@
 
     <!-- Pie de tarjeta con Sello del Camino fiel a sello-camino.png y Garantía de Privacidad -->
     <footer class="card-footer">
+      <div class="more-camino-wrap">
+        <a class="more-camino-link" href="https://neocatechumenaleiter.org/" target="_blank" rel="noopener noreferrer">Quisiera saber más del Camino</a>
+      </div>
       <div class="seal-img-wrap" title="Camino Neocatecumenal · Palabra · Liturgia · Comunidad">
         <img
           src="sello-camino.png"
