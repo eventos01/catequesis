@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>«Venid a mí» · Invitación a Catequesis para Jóvenes y Adultos</title>
+
+  <!-- Metadatos Open Graph para previsualización elegante en WhatsApp -->
+  <meta property="og:title" content="«Venid a mí» · Invitación Personal" />
+  <meta property="og:description" content="Catequesis para jóvenes y adultos en la Parroquia de Sta. María Micaela (Guadalajara). Lunes y jueves a las 20:00 h. Invitación 100% privada y sin recogida de datos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="virgen-del-camino.jpg" />
+
+  <!-- Tipografías clásicas y limpias -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-parchment: #f4ecda;
+      --bg-card: #fbf7ee;
+      --bg-card-inner: #f1e7cf;
+      --teal-title: #174c45;
+      --teal-dark: #0f3631;
+      --brown-schedule: #4e2712;
+      --gold-accent: #b0822c;
+      --gold-soft: #d7be82;
+      --ink-blue: #224477;
+      --text-main: #241f19;
+      --text-muted: #5c5245;
+      --banner-dark: #181715;
+      --privacy-green: #1e5631;
+      --privacy-bg: #e7f2ea;
+      --shadow-soft: 0 10px 30px rgba(46, 33, 15, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #e6dcc5;
+      background-image: radial-gradient(circle at 50% 0%, #f7f0e0 0%, #dfd2b5 100%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 12px 36px;
+    }
+
+    /* Cinta superior de Garantía Total de Privacidad */
+    .privacy-banner {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--privacy-bg);
+      border: 1.5px solid rgba(30, 86, 49, 0.35);
+      color: var(--privacy-green);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .privacy-banner svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      color: var(--privacy-green);
+    }
+
+    .privacy-banner strong {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.82rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Contenedor principal tipo tarjeta móvil */
+    .card-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--bg-parchment);
+      border: 1px solid #d5c5a3;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Cabecera con el icono de la Virgen del Camino completo y sin recortes bruscos */
+    .icon-header {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(180deg, #2b180a 0%, #462a14 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      border-bottom: 3px solid var(--gold-accent);
+      /* Muestra exactamente el icono completo de la Virgen y el Niño ocultando la franja blanca inferior */
+      aspect-ratio: 4 / 5;
+      max-height: 390px;
+    }
+
+    .icon-header img {
+      width: 100%;
+      height: 138%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .icon-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 78%, rgba(244, 236, 218, 0.92) 100%);
+      pointer-events: none;
+    }
+
+    /* Marca de agua ("Logo subliminal") con el sello octogonal */
+    .subliminal-watermark {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      opacity: 0.055;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .response-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-watermark {
+      position: absolute;
+      right: -18px;
+      bottom: -18px;
+      width: 165px;
+      height: 165px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      opacity: 0.06;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .flyer-body, .dialogue-section, .response-panel > *:not(.panel-watermark) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Cuerpo del cartel principal */
+    .flyer-body {
+      padding: 18px 22px 24px;
+      text-align: center;
+    }
+
+    .lema-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 2.15rem;
+      color: var(--teal-title);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .lema-verse {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.18rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #463b2b;
+      line-height: 1.38;
+      max-width: 380px;
+      margin: 0 auto 4px;
+    }
+
+    .lema-citation {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: right;
+      max-width: 380px;
+      margin: 0 auto 12px;
+    }
+
+    /* Monograma XP / MARIA del cartel */
+    .monogram-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 14px;
+    }
+
+    .monogram-svg {
+      width: 68px;
+      height: 68px;
+      color: var(--ink-blue);
+      opacity: 0.9;
+    }
+
+    .announcement-box {
+      background-color: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(176, 130, 44, 0.3);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .announcement-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--teal-title);
+      line-height: 1.22;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .schedule-text {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--brown-schedule);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .location-text {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.4;
+      border-top: 1px dashed rgba(78, 39, 18, 0.25);
+      padding-top: 8px;
+    }
+
+    .location-text strong {
+      font-weight: 700;
+      color: #1f1a14;
+      display: block;
+    }
+
+    /* Sección de Diálogo Interactivo */
+    .dialogue-section {
+      padding: 0 20px 24px;
+    }
+
+    .dialogue-prompt {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .dialogue-prompt h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin-bottom: 4px;
+    }
+
+    .dialogue-prompt p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Botones de Decisión */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      width: 100%;
+      background-color: var(--bg-card);
+      border: 1.5px solid #cbb68c;
+      border-radius: 13px;
+      padding: 13px 15px;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    .option-btn:hover, .option-btn:focus-visible {
+      border-color: var(--teal-title);
+      background-color: #fffdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(23, 76, 69, 0.1);
+      outline: none;
+    }
+
+    .option-btn.active {
+      background-color: var(--teal-title);
+      border-color: var(--teal-title);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(23, 76, 69, 0.25);
+    }
+
+    .option-btn .btn-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: var(--bg-card-inner);
+      color: var(--brown-schedule);
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option-btn.active .btn-num {
+      background-color: rgba(255,255,255,0.2);
+      color: #ffffff;
+    }
+
+    .option-btn .btn-label {
+      flex: 1;
+      line-height: 1.32;
+    }
+
+    .option-btn .btn-arrow {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      opacity: 0.65;
+      transition: transform 0.25s ease;
+    }
+
+    .option-btn.active .btn-arrow {
+      transform: rotate(90deg);
+      opacity: 1;
+    }
+
+    /* Panel de Respuesta ("La Palabra y Reflexión") */
+    .response-panel {
+      display: none;
+      margin-top: 18px;
+      background-color: var(--bg-card);
+      border: 1.5px solid var(--gold-accent);
+      border-radius: 16px;
+      padding: 20px 18px;
+      box-shadow: 0 8px 25px rgba(46, 33, 15, 0.12);
+    }
+
+    .response-panel.visible {
+      display: block;
+    }
+
+    /* Animaciones en tiempos (Paso 1: Palabra, Paso 2: Reflexión, Paso 3: Cierre/Derivaciones) */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-1-word {
+      animation: fadeSlideUp 0.45s ease forwards;
+    }
+
+    .step-2-reflection {
+      opacity: 0;
+      animation: fadeSlideUp 0.55s ease 0.35s forwards;
+    }
+
+    .step-3-derivation {
+      opacity: 0;
+      animation: fadeSlideUp 0.55s ease 0.75s forwards;
+    }
+
+    .word-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-accent);
+      background: rgba(176, 130, 44, 0.12);
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+    }
+
+    .scripture-box {
+      text-align: center;
+      padding: 6px 4px 14px;
+      border-bottom: 1px solid rgba(176, 130, 44, 0.35);
+      margin-bottom: 16px;
+    }
+
+    .scripture-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.32rem;
+      font-weight: 600;
+      font-style: italic;
+      color: #1c1610;
+      line-height: 1.38;
+      margin-bottom: 8px;
+    }
+
+    .scripture-ref {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brown-schedule);
+      letter-spacing: 0.02em;
+    }
+
+    .reflection-text {
+      font-size: 0.96rem;
+      color: var(--text-main);
+      line-height: 1.58;
+      margin-bottom: 16px;
+    }
+
+    /* Bloque visual especial para el Bloque 2 (El cartel negro de personajes bíblicos) */
+    .biblical-rollup {
+      background-color: var(--banner-dark);
+      color: #e9e4da;
+      border-radius: 12px;
+      padding: 16px 15px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+      border-left: 4px solid var(--gold-accent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .biblical-rollup strong {
+      color: #f3c86b;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .excuse-punchline {
+      background: linear-gradient(135deg, #2d1b0e 0%, #174c45 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 15px 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .excuse-punchline .punch-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #f6d07c;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .excuse-punchline p {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      margin-bottom: 8px;
+      color: #f5efe4;
+    }
+
+    .excuse-punchline .god-is-here {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+
+    /* Caja de Derivación / Segunda consideración */
+    .derivation-card {
+      background-color: var(--bg-card-inner);
+      border-radius: 12px;
+      padding: 14px 15px;
+      margin-top: 8px;
+      font-size: 0.89rem;
+      color: #2c241b;
+    }
+
+    .derivation-card p {
+      margin-bottom: 12px;
+      line-height: 1.48;
+    }
+
+    /* Botones de Acción dentro de las derivaciones */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      text-align: center;
+    }
+
+    .action-btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-calendar {
+      background-color: var(--teal-title);
+      color: #ffffff;
+    }
+
+    .btn-whatsapp {
+      background-color: #1f7a44;
+      color: #ffffff;
+    }
+
+    .btn-maps {
+      background-color: #ffffff;
+      color: var(--brown-schedule);
+      border: 1.5px solid #cbb68c;
+    }
+
+    .btn-secondary-toggle {
+      background: transparent;
+      color: var(--teal-title);
+      border: 1px dashed var(--teal-title);
+      padding: 9px 12px;
+      font-size: 0.83rem;
+    }
+
+    .calendar-subnote {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    /* Desplegable extra (¿Cómo son estos encuentros?) */
+    .details-Accordion {
+      margin-top: 10px;
+      border-top: 1px solid rgba(176, 130, 44, 0.25);
+      padding-top: 10px;
+    }
+
+    .details-Accordion summary {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--teal-title);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .details-Accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .details-Accordion .accordion-content {
+      margin-top: 8px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+      background: rgba(255,255,255,0.6);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    /* Pie con Sello del Camino Neocatecumenal y Nota de Privacidad */
+    .card-footer {
+      background-color: #efe4cc;
+      border-top: 1px solid #d5c5a3;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .seal-img-wrap {
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .seal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      opacity: 0.72;
+    }
+
+    .footer-privacy-note {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      max-width: 390px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .toast-feedback {
+      display: none;
+      margin-top: 8px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background-color: var(--privacy-bg);
+      color: var(--privacy-green);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AVISO MANIFIESTO DE PRIVACIDAD Y CERO RECOGIDA DE DATOS -->
+  <div class="privacy-banner" role="region" aria-label="Garantía de privacidad">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+    <div>
+      <strong>INVITACIÓN 100 % PRIVADA · NO SE RECOGE NINGÚN DATO</strong>
+      Esta página es únicamente una invitación abierta. No solicita ni recopila teléfonos, datos personales, cookies ni registra qué opción pulsas. Todo se visualiza exclusivamente en tu pantalla.
+    </div>
+  </div>
+
+  <!-- TARJETA PRINCIPAL DE LA INVITACIÓN -->
+  <main class="card-container">
+
+    <!-- Cabecera: Virgen del Camino -->
+    <div class="icon-header">
+      <img
+        src="virgen-del-camino.jpg"
+        onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792942087306_6f329471.jpg';"
+        alt="Icono de la Virgen del Camino"
+      />
+      <div class="icon-header-overlay"></div>
+    </div>
+
+    <!-- Marca de agua ("logo subliminal") en el fondo del pergamino -->
+    <img
+      class="subliminal-watermark"
+      src="sello-camino.png"
+      onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';"
+      alt=""
+      aria-hidden="true"
+    />
+
+    <!-- Cartel y Lema de la Convocatoria -->
+    <section class="flyer-body">
+      <h1 class="lema-title">“Venid a mí”</h1>
+      <p class="lema-verse">
+        “Venid a mí todos los que estáis fatigados y sobrecargados, y yo os proporcionaré descanso”
+      </p>
+      <p class="lema-citation">(Mt 11, 28)</p>
+
+      <!-- Monograma XP / MARIA fiel al cartel original -->
+      <div class="monogram-wrap" aria-hidden="true">
+        <svg class="monogram-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Cruz horizontal y vertical central -->
+          <line x1="16" y1="48" x2="86" y2="48" />
+          <line x1="54" y1="12" x2="54" y2="88" />
+          <!-- P (Rho) en el eje vertical -->
+          <path d="M54 16 C66 16, 66 34, 54 34" />
+          <!-- X (Chi) arriba a la izquierda -->
+          <line x1="25" y1="18" x2="47" y2="42" />
+          <line x1="47" y1="18" x2="25" y2="42" />
+          <line x1="23" y1="30" x2="49" y2="30" />
+          <!-- M abajo a la izquierda -->
+          <line x1="27" y1="55" x2="27" y2="80" />
+          <line x1="35" y1="55" x2="35" y2="80" />
+          <line x1="43" y1="55" x2="43" y2="80" />
+          <line x1="24" y1="55" x2="46" y2="55" />
+          <!-- R / IA abajo a la derecha -->
+          <line x1="60" y1="55" x2="60" y2="80" />
+          <path d="M60 56 C71 56, 71 68, 60 68" />
+          <line x1="64" y1="67" x2="71" y2="80" />
+          <line x1="75" y1="57" x2="75" y2="75" />
+          <path d="M79 68 C86 68, 86 81, 79 81 C75 81, 75 74, 83 73" />
+        </svg>
+      </div>
+
+      <!-- Datos de la convocatoria -->
+      <div class="announcement-box">
+        <div class="announcement-heading">Catequesis para Jóvenes y Adultos</div>
+        <div class="schedule-text">
+          Lunes y jueves a las 20:00 h.<br />
+          A partir del próximo día 26 de octubre
+        </div>
+        <div class="location-text">
+          <strong>Camino Neocatecumenal</strong>
+          Parroquia de Santa María Micaela (Salones parroquiales)<br />
+          Avda. Santa María Micaela, 15 · GUADALAJARA
+        </div>
+      </div>
+    </section>
+
+    <!-- Diálogo Interactivo -->
+    <section class="dialogue-section" aria-label="Diálogo interactivo">
+      <div class="dialogue-prompt">
+        <h2>Una palabra para ti</h2>
+        <p>Pulsa con total libertad la opción que mejor exprese tu situación hoy (nadie registra tu respuesta):</p>
+      </div>
+
+      <div class="options-grid" role="tablist">
+        <!-- BLOQUE 1.A -->
+        <button type="button" class="option-btn" onclick="selectOption('b1a', this)">
+          <span class="btn-num">1</span>
+          <span class="btn-label">Me interesa. Quiero asistir o saber más</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <!-- BLOQUE 1.B (Ya creyentes / practicantes) -->
+        <button type="button" class="option-btn" onclick="selectOption('b1b', this)">
+          <span class="btn-num">2</span>
+          <span class="btn-label">Ya soy creyente / practicante</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <!-- BLOQUE 2 (Indecisos / ocupados) -->
+        <button type="button" class="option-btn" onclick="selectOption('b2', this)">
+          <span class="btn-num">3</span>
+          <span class="btn-label">Entre semana me es difícil organizarme y ahora no busco líos</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <!-- BLOQUE 3 (Alejados) -->
+        <button type="button" class="option-btn" onclick="selectOption('b3', this)">
+          <span class="btn-num">4</span>
+          <span class="btn-label">Agradezco el detalle, pero la Iglesia no es mi sitio</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- =========================================================
+           PANEL RESPUESTA 1.A: Me interesa. Quiero asistir o saber más
+           ========================================================= -->
+      <div id="panel-b1a" class="response-panel" role="tabpanel">
+        <img class="panel-watermark" src="sello-camino.png" onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';" alt="" aria-hidden="true" />
+        <div class="step-1-word scripture-box">
+          <span class="word-badge">La Palabra</span>
+          <p class="scripture-text">
+            «Él les dijo: “No tengáis miedo. ¿Buscáis a Jesús el Nazareno, el crucificado? Ha resucitado. No está aquí. Mirad el sitio donde lo pusieron.”»
+          </p>
+          <span class="scripture-ref">(Mc 16, 6)</span>
+        </div>
+
+        <div class="step-2-reflection">
+          <p class="reflection-text">
+            ¿Por qué vivir resignados, como si Dios estuviera muerto, cuando Cristo ha vencido a la muerte? Quienes confiamos en Él somos testigos a diario de su fuerza real en medio de las dificultades.
+          </p>
+        </div>
+
+        <div class="step-3-derivation derivation-card">
+          <p><strong>Te esperamos con las puertas abiertas:</strong> puedes agendar un aviso automático en tu propio móvil para que no se te pase.</p>
+          <div class="action-buttons">
+            <button type="button" class="action-btn btn-calendar" onclick="scheduleReminder('b1a-toast')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Agendar aviso 2 h antes (Lunes y Jueves · máx. 4 veces)
+            </button>
+            <div class="calendar-subnote">
+              Crea el recordatorio en tu calendario móvil a las 18:00 h (2 h antes de las 20:00 h) para los 4 primeros encuentros, o hasta que decidas detenerlo.
+            </div>
+            <div id="b1a-toast" class="toast-feedback">
+              Recordatorio generado para tu calendario móvil (con aviso a las 18:00 h, máx. 4 sesiones).
+            </div>
+
+            <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Cómo llegar a la Parroquia (Google Maps)
+            </a>
+
+            <button type="button" class="action-btn btn-whatsapp" onclick="shareWhatsApp('general')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              Compartir esta invitación por WhatsApp
+            </button>
+          </div>
+
+          <details class="details-Accordion">
+            <summary>
+              <span>¿Cómo son estos encuentros?</span>
+              <span>+</span>
+            </summary>
+            <div class="accordion-content">
+              Son charlas de unos 45-50 minutos, los lunes y jueves a las 20:00 h en los salones parroquiales de Santa María Micaela. La entrada es totalmente libre, sin inscripciones ni compromisos: puedes venir y escuchar con total libertad.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           PANEL RESPUESTA 1.B: Ya soy creyente / practicante
+           ========================================================= -->
+      <div id="panel-b1b" class="response-panel" role="tabpanel">
+        <img class="panel-watermark" src="sello-camino.png" onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';" alt="" aria-hidden="true" />
+        <div class="step-1-word scripture-box">
+          <span class="word-badge">La Palabra</span>
+          <p class="scripture-text">
+            «Pero no se lo permitió, sino que le dijo: “Vete a casa con los tuyos y anúnciales lo que el Señor ha hecho contigo y que ha tenido misericordia de ti.”»
+          </p>
+          <span class="scripture-ref">(Mc 5, 19)</span>
+        </div>
+
+        <div class="step-2-reflection">
+          <p class="reflection-text">
+            No leas esta Palabra como una exclusión —las puertas de estas catequesis están totalmente abiertas si quieres avivar y profundizar tu fe—, sino como un envío: tú, que ya has experimentado que el Señor ha tenido misericordia de ti, ayúdanos a difundir esta llamada entre los tuyos para que otros puedan descubrir el amor de Dios.
+          </p>
+        </div>
+
+        <div class="step-3-derivation derivation-card">
+          <p><strong>Haz llegar esta llamada a los tuyos:</strong> piensa en algún familiar, amigo o compañero que esté pasando un momento difícil o necesite una palabra de descanso.</p>
+          <div class="action-buttons">
+            <button type="button" class="action-btn btn-whatsapp" onclick="shareWhatsApp('mision')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              Compartir esta invitación con los míos por WhatsApp
+            </button>
+
+            <button type="button" class="action-btn btn-calendar" onclick="scheduleReminder('b1b-toast')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              También quiero asistir (Agendar aviso 2 h antes · máx. 4 veces)
+            </button>
+            <div id="b1b-toast" class="toast-feedback">
+              Recordatorio generado para tu calendario móvil (con aviso a las 18:00 h, máx. 4 sesiones).
+            </div>
+
+            <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
+              Ver ubicación de los salones parroquiales
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           PANEL RESPUESTA 2: Indecisos / ocupados / sin líos
+           ========================================================= -->
+      <div id="panel-b2" class="response-panel" role="tabpanel">
+        <img class="panel-watermark" src="sello-camino.png" onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';" alt="" aria-hidden="true" />
+        <!-- Golpe visual 1: La Palabra -->
+        <div class="step-1-word scripture-box">
+          <span class="word-badge">La Palabra</span>
+          <p class="scripture-text">
+            «(...) había allí un hombre con la mano paralizada. (...) “Levántate y ponte ahí en medio.” (...) Dice al hombre: “Extiende la mano.” La extendió y su mano quedó restablecida.»
+          </p>
+          <span class="scripture-ref">(Mc 3, 1. 3. 5)</span>
+        </div>
+
+        <!-- Golpe visual 2: La ráfaga del cartel -->
+        <div class="step-2-reflection">
+          <div class="biblical-rollup">
+            Jacob era <strong>tramposo</strong>. David fue <strong>adúltero</strong>. Noé se <strong>emborrachó</strong>. Jonás <strong>huyó</strong>. Pablo era <strong>asesino</strong>. Miriam era <strong>chismosa</strong>. Marta se <strong>angustiaba</strong>. Sara era <strong>impaciente</strong>. Moisés <strong>tartamudeaba</strong>. Zaqueo era <strong>pequeño</strong>. Abraham era <strong>viejo</strong>. Magdalena era <strong>prostituta</strong>. Pedro le <strong>negó</strong>. Lázaro estaba <strong>muerto</strong>.
+          </div>
+
+          <!-- Golpe visual 3: El cierre en grande -->
+          <div class="excuse-punchline">
+            <span class="punch-title">¿Cuál es tu excusa?</span>
+            <p>¿Acaso tienes miedo de ponerte en el centro como el hombre de la mano paralizada?</p>
+            <span class="god-is-here">¡DIOS ESTÁ AQUÍ! Como a ellos, Él te espera…</span>
+          </div>
+        </div>
+
+        <!-- Derivación con Ex 6, 6 y agenda -->
+        <div class="step-3-derivation derivation-card">
+          <p>
+            No hace falta apuntarse a nada ni asistir siempre. Ven un lunes o un jueves a las 20:00 h, escucha 45 minutos en libertad y <strong>comprueba por ti mismo que el brazo de Dios no se ha secado (Ex 6, 6)</strong>.
+          </p>
+          <div class="action-buttons">
+            <button type="button" class="action-btn btn-calendar" onclick="scheduleReminder('b2-toast')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Agendar recordatorio 2 h antes (Lunes y Jueves · máx. 4 veces)
+            </button>
+            <div class="calendar-subnote">
+              Te avisará a las 18:00 h los próximos lunes y jueves (hasta 4 veces o hasta que lo detengas en tu calendario).
+            </div>
+            <div id="b2-toast" class="toast-feedback">
+              Recordatorio generado para tu calendario móvil (con aviso a las 18:00 h, máx. 4 sesiones).
+            </div>
+
+            <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
+              Ver ubicación en Google Maps
+            </a>
+
+            <button type="button" class="action-btn btn-whatsapp" onclick="shareWhatsApp('general')">
+              Compartir esta invitación por WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           PANEL RESPUESTA 3: La Iglesia no es mi sitio
+           ========================================================= -->
+      <div id="panel-b3" class="response-panel" role="tabpanel">
+        <img class="panel-watermark" src="sello-camino.png" onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';" alt="" aria-hidden="true" />
+        <div class="step-1-word scripture-box">
+          <span class="word-badge">La Palabra</span>
+          <p class="scripture-text">
+            «Él, por su parte, solía retirarse a despoblado y se entregaba a la oración.»
+          </p>
+          <span class="scripture-ref">(Lc 5, 16)</span>
+        </div>
+
+        <div class="step-2-reflection">
+          <p class="reflection-text">
+            Jesús caminaba en medio de su pueblo sanando a los leprosos de una enfermedad que les consumía la carne y la vida. Hoy hay otros cansancios y desencantos que también nos desgastan por dentro. Si ahora prefieres no acercarte, Él no te fuerza: simplemente te espera en silencio e intercede por cada uno de nosotros, porque lo conoce todo.
+          </p>
+        </div>
+
+        <div class="step-3-derivation derivation-card">
+          <p>
+            <strong>Una consideración para alguien a quien estimes:</strong><br />
+            Respetamos totalmente tu decisión. Quizá hoy no sea para ti, pero ¿conoces a alguien a quien estimes que esté pasando por un momento de cansancio o sobrecarga y a quien esta invitación le pueda hacer bien?
+          </p>
+          <div class="action-buttons">
+            <button type="button" class="action-btn btn-whatsapp" onclick="shareWhatsApp('estimado')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              Enviar esta invitación a alguien que estimo
+            </button>
+
+            <details class="details-Accordion">
+              <summary>
+                <span>¿Y si algún día cambio de idea y quiero asomarme?</span>
+                <span>+</span>
+              </summary>
+              <div class="accordion-content">
+                <p style="margin-bottom: 8px;">
+                  En los salones parroquiales nadie te va a preguntar quién eres ni te va a pedir nada. Si quieres dejarte un aviso discreto en tu móvil por si te animas:
+                </p>
+                <button type="button" class="action-btn btn-calendar" style="margin-bottom: 6px;" onclick="scheduleReminder('b3-toast')">
+                  Agendar aviso 2 h antes (Lunes y Jueves · máx. 4 veces)
+                </button>
+                <div id="b3-toast" class="toast-feedback">
+                  Recordatorio generado para tu calendario móvil (con aviso a las 18:00 h, máx. 4 sesiones).
+                </div>
+                <a class="action-btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+Santa+Maria+Micaela+Avda+Santa+Maria+Micaela+15+Guadalajara+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">
+                  Ver ubicación (Avda. Sta. María Micaela, 15)
+                </a>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Pie de tarjeta con Sello del Camino y Garantía de Privacidad -->
+    <footer class="card-footer">
+      <div class="seal-img-wrap" title="Camino Neocatecumenal · Palabra · Liturgia · Comunidad">
+        <img
+          src="sello-camino.png"
+          onerror="this.onerror=null; this.src='file:///C:/Users/perezd/.gemini/antigravity/brain/bddff6b3-5660-4807-9a55-14a22b1ec3c5/.user_uploaded/media_1792946761359_bc4e7fd4.png';"
+          alt="Sello del Camino Neocatecumenal"
+        />
+      </div>
+      <p class="footer-privacy-note">
+        <strong>Garantía de Confidencialidad:</strong> Esta invitación interactiva funciona íntegramente en tu navegador sin conexión a bases de datos. No almacena cookies, ni recopila teléfonos, ni registra tu interacción.
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    /**
+     * Cambia entre los paneles de respuesta con animación suave en tiempos
+     * Sin enviar ni registrar ningún dato externo.
+     */
+    function selectOption(panelKey, btnElement) {
+      const allButtons = document.querySelectorAll('.option-btn');
+      allButtons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const allPanels = document.querySelectorAll('.response-panel');
+      allPanels.forEach(panel => {
+        panel.classList.remove('visible');
+      });
+
+      const targetPanel = document.getElementById('panel-' + panelKey);
+      if (targetPanel) {
+        // Reiniciar la animación CSS para que los tiempos se desplieguen con elegancia
+        void targetPanel.offsetWidth;
+        targetPanel.classList.add('visible');
+        setTimeout(() => {
+          targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 80);
+      }
+    }
+
+    /**
+     * Genera un archivo de calendario (.ics) local en el propio teléfono del usuario:
+     * - Empieza el próximo lunes 26 de octubre a las 20:00 h
+     * - Se repite Lunes y Jueves hasta un máximo de 4 veces (COUNT=4) o hasta que el usuario lo detenga
+     * - Incluye alarma/aviso 2 horas antes (-PT2H, es decir, a las 18:00 h)
+     */
+    function scheduleReminder(toastId) {
+      const icsLines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Parroquia Santa Maria Micaela//Invitacion Catequesis//ES',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:catequesis-micaela-2026@guadalajara.local',
+        'SUMMARY:Catequesis Jóvenes y Adultos - "Venid a mí"',
+        'DTSTART:20261026T200000',
+        'DTEND:20261026T210000',
+        'RRULE:FREQ=WEEKLY;BYDAY=MO,TH;COUNT=4',
+        'LOCATION:Parroquia de Santa María Micaela (Salones parroquiales)\\, Avda. Santa María Micaela\\, 15\\, Guadalajara',
+        'DESCRIPTION:"Venid a mí todos los que estáis fatigados y sobrecargados\\, y yo os proporcionaré descanso" (Mt 11\\, 28).\\n\\nLunes y jueves a las 20:00 h en los salones parroquiales. Entrada libre.\\n(Puedes detener o eliminar este recordatorio en tu calendario cuando quieras).',
+        'BEGIN:VALARM',
+        'TRIGGER:-PT2H',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Recordatorio (faltan 2 horas): Hoy a las 20:00 h Catequesis "Venid a mí" en Parroquia Sta. María Micaela',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ];
+
+      const icsContent = icsLines.join('\r\n');
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'catequesis-santa-maria-micaela.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+      if (toastId) {
+        const toast = document.getElementById(toastId);
+        if (toast) {
+          toast.style.display = 'block';
+        }
+      }
+    }
+
+    /**
+     * Comparte la invitación por WhatsApp con un mensaje respetuoso y adaptado
+     */
+    function shareWhatsApp(mode) {
+      const currentUrl = window.location.href.startsWith('http') ? window.location.href : '';
+      let message = '';
+
+      if (mode === 'estimado') {
+        message = 'Hola, he pensado en ti al ver esta invitación por si te pudiera hacer bien. Es para unas catequesis de jóvenes y adultos en la Parroquia de Sta. María Micaela (Guadalajara), lunes y jueves a las 20:00 h a partir del 26 de octubre («Venid a mí los que estáis fatigados y sobrecargados...» Mt 11, 28).' + (currentUrl ? ' Puedes verla aquí (es totalmente privada y no pide ningún dato): ' + currentUrl : '');
+      } else if (mode === 'mision') {
+        message = 'Te comparto con cariño esta invitación a las catequesis para jóvenes y adultos en la Parroquia de Sta. María Micaela (Guadalajara), lunes y jueves a las 20:00 h a partir del 26 de octubre: «Venid a mí todos los que estáis fatigados y sobrecargados, y yo os proporcionaré descanso» (Mt 11, 28).' + (currentUrl ? ' ' + currentUrl : '');
+      } else {
+        message = 'Invitación a las Catequesis para Jóvenes y Adultos («Venid a mí», Mt 11, 28) en la Parroquia de Santa María Micaela (Avda. Sta. María Micaela, 15, Guadalajara). Lunes y jueves a las 20:00 h a partir del 26 de octubre.' + (currentUrl ? ' ' + currentUrl : '');
+      }
+
+      const waUrl = 'https://wa.me/?text=' + encodeURIComponent(message);
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    }
+  </script>
+</body>
+</html>
