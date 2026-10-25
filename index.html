@@ -9,7 +9,8 @@
   <meta property="og:title" content="«Venid a mí» · Invitación Personal" />
   <meta property="og:description" content="Catequesis para jóvenes y adultos en la Parroquia de Sta. María Micaela (Guadalajara). Lunes y jueves a las 20:00 h. Invitación 100% privada y sin recogida de datos." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="virgen-del-camino.jpg" />
+  <meta property="og:url" content="https://eventos01.github.io/catequesis/" />
+  <meta property="og:image" content="https://eventos01.github.io/catequesis/virgen-del-camino.jpg" />
 
   <!-- Tipografías clásicas y limpias -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1370,6 +1371,84 @@
   </div>
 
   <script>
+    /* =====================================================================
+       ESTADÍSTICAS ANÓNIMAS AGREGADAS (0% cookies, 0% datos personales)
+       ===================================================================== */
+    const STATS_NAMESPACE = 'catequesis-micaela-guadalajara-2026';
+
+    function trackStat(key) {
+      try {
+        const localKey = 'stat_local_' + key;
+        const currentLocal = parseInt(localStorage.getItem(localKey) || '0', 10);
+        localStorage.setItem(localKey, String(currentLocal + 1));
+      } catch (e) {}
+
+      fetch('https://abacus.jasoncameron.dev/hit/' + STATS_NAMESPACE + '/' + key, {
+        mode: 'cors',
+        cache: 'no-store',
+        keepalive: true
+      }).catch(() => {});
+    }
+
+    function initAnonymousStats() {
+      // 1. Contabilizar visita al abrir la invitación
+      trackStat('visitas_totales');
+
+      // 2. Medir tipo de lectura según tiempo activo con la pantalla visible:
+      //    - < 15 s: Lectura rápida / vistazo
+      //    - 15 a 60 s: Lectura sencilla / media (alcanza_15s)
+      //    - > 60 s: Lectura profunda / detenida (alcanza_60s)
+      let activeSeconds = 0;
+      let hit15 = false;
+      let hit60 = false;
+
+      const readingInterval = setInterval(() => {
+        if (document.visibilityState === 'hidden') return;
+        activeSeconds += 1;
+
+        if (activeSeconds >= 15 && !hit15) {
+          hit15 = true;
+          trackStat('lectura_15s');
+        }
+        if (activeSeconds >= 60 && !hit60) {
+          hit60 = true;
+          trackStat('lectura_60s');
+          clearInterval(readingInterval);
+        }
+      }, 1000);
+
+      // 3. Enlaces directos (Calendario Android, Calendario iPhone, Google Maps, PDF Carta, Web Camino)
+      document.querySelectorAll('a[href*="calendar.google.com"]').forEach(el => {
+        el.addEventListener('click', () => trackStat('agendar_android'));
+      });
+      document.querySelectorAll('a[href*="catequesis.ics"]').forEach(el => {
+        el.addEventListener('click', () => trackStat('agendar_iphone'));
+      });
+      document.querySelectorAll('a[href*="google.com/maps"]').forEach(el => {
+        el.addEventListener('click', () => trackStat('google_maps'));
+      });
+      document.querySelectorAll('a[href*="Carta_D_Pedro.pdf"]').forEach(el => {
+        el.addEventListener('click', () => trackStat('carta_pdf'));
+      });
+      document.querySelectorAll('a[href*="neocatechumenaleiter.org"]').forEach(el => {
+        el.addEventListener('click', () => trackStat('saber_mas_camino'));
+      });
+
+      // 4. Desplegables ("¿Cómo son estos encuentros?" y "¿Y si algún día cambio de idea?")
+      document.querySelectorAll('details.details-Accordion').forEach(detailsEl => {
+        detailsEl.addEventListener('toggle', () => {
+          if (detailsEl.open) {
+            const summaryText = detailsEl.querySelector('summary')?.innerText || '';
+            if (summaryText.includes('cambio de idea')) {
+              trackStat('acordeon_cambio_idea');
+            } else {
+              trackStat('acordeon_encuentros');
+            }
+          }
+        });
+      });
+    }
+
     function adjustVirginCrop(imgEl) {
       const frame = document.getElementById('virgen-frame');
       if (!frame || !imgEl.naturalWidth) return;
@@ -1384,6 +1463,7 @@
     function openParishLetter() {
       const modal = document.getElementById('parish-letter-modal');
       if (modal) modal.classList.add('open');
+      trackStat('carta_parroco');
     }
 
     function closeParishLetter() {
@@ -1417,6 +1497,17 @@
         btnElement.setAttribute('aria-expanded', 'true');
         void targetPanel.offsetWidth;
         targetPanel.classList.add('visible');
+
+        const optionStatMap = {
+          b1a: 'opcion_1_interesa',
+          b1b: 'opcion_2_creyente',
+          b2: 'opcion_3_dificil',
+          b3: 'opcion_4_no_sitio'
+        };
+        if (optionStatMap[panelKey]) {
+          trackStat(optionStatMap[panelKey]);
+        }
+
         setTimeout(() => {
           btnElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 80);
@@ -1424,7 +1515,8 @@
     }
 
     function shareWhatsApp(mode) {
-      const currentUrl = window.location.href.startsWith('http') ? window.location.href : '';
+      trackStat('compartir_whatsapp');
+      const currentUrl = 'https://eventos01.github.io/catequesis/';
       let message = '';
 
       if (mode === 'estimado') {
@@ -1510,6 +1602,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      initAnonymousStats();
       checkCaminoSiteReachability(false);
       const sealImgs = document.querySelectorAll('.seal-img-wrap img, .subliminal-watermark');
       sealImgs.forEach(img => {

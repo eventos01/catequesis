@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Panel de Estadísticas Anónimas · Catequesis Sta. María Micaela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-parchment: #f4ecda;
+      --bg-card: #fbf7ee;
+      --bg-card-inner: #f1e7cf;
+      --teal-title: #174c45;
+      --teal-dark: #0f3631;
+      --brown-schedule: #4e2712;
+      --gold-accent: #b0822c;
+      --text-main: #241f19;
+      --text-muted: #5c5245;
+      --privacy-green: #1e5631;
+      --privacy-bg: #e7f2ea;
+      --shadow-soft: 0 10px 30px rgba(46, 33, 15, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #e6dcc5;
+      background-image: radial-gradient(circle at 50% 0%, #f7f0e0 0%, #dfd2b5 100%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 16px 12px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dashboard-container {
+      width: 100%;
+      max-width: 680px;
+      background-color: var(--bg-parchment);
+      border: 1px solid #d5c5a3;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .dashboard-header {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-title) 100%);
+      color: #ffffff;
+      padding: 22px 22px 18px;
+      border-bottom: 3px solid var(--gold-accent);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dashboard-header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .dashboard-header p {
+      font-size: 0.82rem;
+      color: #d9ece8;
+      margin-top: 3px;
+    }
+
+    .refresh-btn {
+      background-color: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+    }
+
+    .refresh-btn:hover {
+      background-color: rgba(255, 255, 255, 0.26);
+    }
+
+    .dashboard-body {
+      padding: 20px 18px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .status-bar {
+      background-color: var(--privacy-bg);
+      border: 1px solid rgba(30, 86, 49, 0.3);
+      color: var(--privacy-green);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 520px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi-card {
+      background-color: var(--bg-card);
+      border: 1.5px solid #d5c5a3;
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal-title);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brown-schedule);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .kpi-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .section-card {
+      background-color: var(--bg-card);
+      border: 1.5px solid #d5c5a3;
+      border-radius: 16px;
+      padding: 16px 16px 18px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--teal-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .metric-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .metric-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.86rem;
+    }
+
+    .metric-name {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .metric-count {
+      font-weight: 800;
+      color: var(--teal-title);
+      white-space: nowrap;
+    }
+
+    .metric-pct {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      background-color: var(--bg-card-inner);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal-title) 0%, var(--gold-accent) 100%);
+      border-radius: 99px;
+      transition: width 0.5s ease;
+    }
+
+    .bar-fill.reading-fast {
+      background: #8c7b65;
+    }
+
+    .bar-fill.reading-medium {
+      background: var(--gold-accent);
+    }
+
+    .bar-fill.reading-deep {
+      background: var(--teal-title);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a {
+      color: var(--teal-title);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="dashboard-container">
+    <header class="dashboard-header">
+      <div>
+        <h1>Estadísticas Anónimas · «Venid a mí»</h1>
+        <p>Parroquia de Santa María Micaela (Guadalajara) · 0 % datos personales</p>
+      </div>
+      <button type="button" class="refresh-btn" onclick="loadAllStats()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+        </svg>
+        Actualizar ahora
+      </button>
+    </header>
+
+    <div class="dashboard-body">
+      <div class="status-bar">
+        <span id="sync-status">Cargando contadores anónimos en tiempo real...</span>
+        <span id="last-updated"></span>
+      </div>
+
+      <!-- 1. RESUMEN GENERAL -->
+      <section class="kpi-grid" aria-label="Resumen general">
+        <div class="kpi-card">
+          <div id="kpi-visitas" class="kpi-value">0</div>
+          <div class="kpi-label">Visitas totales</div>
+          <div class="kpi-sub">Aperturas de la invitación</div>
+        </div>
+        <div class="kpi-card">
+          <div id="kpi-opciones" class="kpi-value">0</div>
+          <div class="kpi-label">Opciones pulsadas</div>
+          <div class="kpi-sub">Total respuestas abiertas</div>
+        </div>
+        <div class="kpi-card">
+          <div id="kpi-carta" class="kpi-value">0</div>
+          <div class="kpi-label">Carta del Párroco</div>
+          <div class="kpi-sub">Lecturas + descargas PDF</div>
+        </div>
+      </section>
+
+      <!-- 2. DURACIÓN / TIPO DE LECTURA -->
+      <section class="section-card">
+        <div class="section-title">
+          <span>Tipo y profundidad de lectura</span>
+        </div>
+        <p class="section-subtitle">
+          Clasificación automática según el tiempo con la invitación abierta en pantalla:
+        </p>
+
+        <div class="metric-list">
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">⚡ Lectura rápida / vistazo (menos de 15 seg.)</span>
+              <span><strong id="val-rapida" class="metric-count">0</strong><span id="pct-rapida" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-rapida" class="bar-fill reading-fast"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">📖 Lectura sencilla / media (entre 15 y 60 seg.)</span>
+              <span><strong id="val-sencilla" class="metric-count">0</strong><span id="pct-sencilla" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-sencilla" class="bar-fill reading-medium"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">🕯️ Lectura profunda / detenida (más de 1 minuto)</span>
+              <span><strong id="val-profunda" class="metric-count">0</strong><span id="pct-profunda" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-profunda" class="bar-fill reading-deep"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. OPCIONES PULSADAS EN "UNA PALABRA PARA TI" -->
+      <section class="section-card">
+        <div class="section-title">
+          <span>Respuestas pulsadas en «Una palabra para ti»</span>
+        </div>
+        <p class="section-subtitle">
+          Qué botones han despertado más interés entre quienes han abierto la invitación:
+        </p>
+
+        <div class="metric-list">
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">1. Me interesa. Quiero asistir o saber más</span>
+              <span><strong id="val-op1" class="metric-count">0</strong><span id="pct-op1" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-op1" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">2. Ya soy creyente / practicante</span>
+              <span><strong id="val-op2" class="metric-count">0</strong><span id="pct-op2" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-op2" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">3. Entre semana me es difícil organizarme y ahora no busco líos</span>
+              <span><strong id="val-op3" class="metric-count">0</strong><span id="pct-op3" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-op3" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">4. Agradezco el detalle, pero la Iglesia no es mi sitio</span>
+              <span><strong id="val-op4" class="metric-count">0</strong><span id="pct-op4" class="metric-pct">(0 %)</span></span>
+            </div>
+            <div class="bar-track"><div id="bar-op4" class="bar-fill"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. ACCESOS Y BOTONES SECUNDARIOS -->
+      <section class="section-card">
+        <div class="section-title">
+          <span>Otros accesos y botones pulsados</span>
+        </div>
+        <p class="section-subtitle">
+          Interacciones con la carta del párroco, calendarios, ubicación, WhatsApp e información del Camino:
+        </p>
+
+        <div class="metric-list">
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">📄 Abrir Carta del Párroco D. Pedro (en pantalla)</span>
+              <strong id="val-carta-modal" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-carta-modal" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">📥 Ver / Descargar PDF original (Carta_D_Pedro.pdf)</span>
+              <strong id="val-carta-pdf" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-carta-pdf" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">ℹ️ Desplegar «¿Cómo son estos encuentros?»</span>
+              <strong id="val-encuentros" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-encuentros" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">🌱 Desplegar «¿Y si algún día cambio de idea y quiero asomarme?»</span>
+              <strong id="val-cambio" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-cambio" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">📅 Agendar en Google Calendar (Android)</span>
+              <strong id="val-cal-android" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-cal-android" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">🍎 Agendar en Calendario iPhone / Apple (catequesis.ics)</span>
+              <strong id="val-cal-iphone" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-cal-iphone" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">📍 Cómo llegar / Ver ubicación (Google Maps)</span>
+              <strong id="val-maps" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-maps" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">💬 Compartir invitación por WhatsApp</span>
+              <strong id="val-wa" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-wa" class="bar-fill"></div></div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-header">
+              <span class="metric-name">🌐 Enlace «Quisiera saber más del Camino»</span>
+              <strong id="val-camino" class="metric-count">0</strong>
+            </div>
+            <div class="bar-track"><div id="bar-camino" class="bar-fill"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-links">
+        <span>Panel privado de uso interno parroquial (no enlazado públicamente)</span>
+        <a href="https://eventos01.github.io/catequesis/">← Volver a la invitación</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const STATS_NAMESPACE = 'catequesis-micaela-guadalajara-2026';
+
+    const KEYS = [
+      'visitas_totales',
+      'lectura_15s',
+      'lectura_60s',
+      'opcion_1_interesa',
+      'opcion_2_creyente',
+      'opcion_3_dificil',
+      'opcion_4_no_sitio',
+      'carta_parroco',
+      'carta_pdf',
+      'acordeon_encuentros',
+      'acordeon_cambio_idea',
+      'agendar_android',
+      'agendar_iphone',
+      'google_maps',
+      'compartir_whatsapp',
+      'saber_mas_camino'
+    ];
+
+    async function fetchKeyCount(key) {
+      let localVal = 0;
+      try {
+        localVal = parseInt(localStorage.getItem('stat_local_' + key) || '0', 10);
+      } catch (e) {}
+
+      try {
+        const res = await fetch('https://abacus.jasoncameron.dev/get/' + STATS_NAMESPACE + '/' + key, {
+          mode: 'cors',
+          cache: 'no-store'
+        });
+        if (!res.ok) return { val: localVal, remoteOk: false };
+        const data = await res.json();
+        const remoteVal = typeof data.value === 'number' ? data.value : 0;
+        return { val: Math.max(remoteVal, localVal), remoteOk: true };
+      } catch (err) {
+        return { val: localVal, remoteOk: false };
+      }
+    }
+
+    function setBar(valId, pctId, barId, count, total) {
+      const valEl = document.getElementById(valId);
+      if (valEl) valEl.textContent = count;
+
+      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+      if (pctId) {
+        const pctEl = document.getElementById(pctId);
+        if (pctEl) pctEl.textContent = '(' + pct + ' %)';
+      }
+
+      const barEl = document.getElementById(barId);
+      if (barEl) {
+        barEl.style.width = Math.min(100, pct) + '%';
+      }
+    }
+
+    async function loadAllStats() {
+      const statusEl = document.getElementById('sync-status');
+      const updatedEl = document.getElementById('last-updated');
+      if (statusEl) statusEl.textContent = 'Actualizando contadores...';
+
+      const results = {};
+      let anyRemoteOk = false;
+
+      await Promise.all(
+        KEYS.map(async key => {
+          const r = await fetchKeyCount(key);
+          results[key] = r.val;
+          if (r.remoteOk) anyRemoteOk = true;
+        })
+      );
+
+      const visitas = results.visitas_totales || 0;
+      const alcanza15 = Math.min(visitas, results.lectura_15s || 0);
+      const alcanza60 = Math.min(alcanza15, results.lectura_60s || 0);
+
+      const lecturaProfunda = alcanza60;
+      const lecturaSencilla = Math.max(0, alcanza15 - alcanza60);
+      const lecturaRapida = Math.max(0, visitas - alcanza15);
+
+      const op1 = results.opcion_1_interesa || 0;
+      const op2 = results.opcion_2_creyente || 0;
+      const op3 = results.opcion_3_dificil || 0;
+      const op4 = results.opcion_4_no_sitio || 0;
+      const totalOpciones = op1 + op2 + op3 + op4;
+
+      const cartaModal = results.carta_parroco || 0;
+      const cartaPdf = results.carta_pdf || 0;
+
+      // KPIs principales
+      document.getElementById('kpi-visitas').textContent = visitas;
+      document.getElementById('kpi-opciones').textContent = totalOpciones;
+      document.getElementById('kpi-carta').textContent = cartaModal + cartaPdf;
+
+      // Barras de tipo de lectura
+      setBar('val-rapida', 'pct-rapida', 'bar-rapida', lecturaRapida, visitas);
+      setBar('val-sencilla', 'pct-sencilla', 'bar-sencilla', lecturaSencilla, visitas);
+      setBar('val-profunda', 'pct-profunda', 'bar-profunda', lecturaProfunda, visitas);
+
+      // Barras de las 4 opciones
+      const baseOpciones = totalOpciones > 0 ? totalOpciones : 1;
+      setBar('val-op1', 'pct-op1', 'bar-op1', op1, totalOpciones);
+      setBar('val-op2', 'pct-op2', 'bar-op2', op2, totalOpciones);
+      setBar('val-op3', 'pct-op3', 'bar-op3', op3, totalOpciones);
+      setBar('val-op4', 'pct-op4', 'bar-op4', op4, totalOpciones);
+
+      // Otros accesos (escalados respecto al máximo del bloque o visitas)
+      const secondaryCounts = [
+        cartaModal,
+        cartaPdf,
+        results.acordeon_encuentros || 0,
+        results.acordeon_cambio_idea || 0,
+        results.agendar_android || 0,
+        results.agendar_iphone || 0,
+        results.google_maps || 0,
+        results.compartir_whatsapp || 0,
+        results.saber_mas_camino || 0
+      ];
+      const maxSecondary = Math.max(1, ...secondaryCounts, visitas);
+
+      setBar('val-carta-modal', null, 'bar-carta-modal', cartaModal, maxSecondary);
+      setBar('val-carta-pdf', null, 'bar-carta-pdf', cartaPdf, maxSecondary);
+      setBar('val-encuentros', null, 'bar-encuentros', results.acordeon_encuentros || 0, maxSecondary);
+      setBar('val-cambio', null, 'bar-cambio', results.acordeon_cambio_idea || 0, maxSecondary);
+      setBar('val-cal-android', null, 'bar-cal-android', results.agendar_android || 0, maxSecondary);
+      setBar('val-cal-iphone', null, 'bar-cal-iphone', results.agendar_iphone || 0, maxSecondary);
+      setBar('val-maps', null, 'bar-maps', results.google_maps || 0, maxSecondary);
+      setBar('val-wa', null, 'bar-wa', results.compartir_whatsapp || 0, maxSecondary);
+      setBar('val-camino', null, 'bar-camino', results.saber_mas_camino || 0, maxSecondary);
+
+      const now = new Date();
+      if (statusEl) {
+        statusEl.textContent = anyRemoteOk
+          ? '✓ Conectado a los contadores globales en tiempo real'
+          : 'Mostrando actividad registrada (sincronización global activa al subir a GitHub Pages)';
+      }
+      if (updatedEl) {
+        updatedEl.textContent = 'Actualizado: ' + now.toLocaleTimeString('es-ES');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadAllStats);
+  </script>
+</body>
+</html>
