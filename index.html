@@ -97,7 +97,7 @@
       margin-bottom: -52.5%;
     }
 
-    /* Marca de agua ("Logo subliminal") fiel a la imagen original sello-camino.png */
+    /* Marca de agua ("Logo subliminal") fiel a la imagen original sello-camino.png sin fondo */
     .subliminal-watermark {
       position: absolute;
       left: 50%;
@@ -107,7 +107,6 @@
       height: 295px;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: contrast(1.15);
       opacity: 0.13;
       pointer-events: none;
       user-select: none;
@@ -571,7 +570,6 @@
       height: 175px;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: contrast(1.15);
       opacity: 0.12;
       pointer-events: none;
       user-select: none;
@@ -850,11 +848,18 @@
       animation: fadeSlideUp 0.3s ease forwards;
     }
 
-    .isp-block-notice strong {
+    .isp-block-notice .notice-title {
       color: #4a3208;
+      font-weight: 700;
       display: block;
       margin-bottom: 2px;
       font-size: 0.77rem;
+    }
+
+    .isp-block-notice strong {
+      color: #4a3208;
+      font-weight: 700;
+      display: inline;
     }
 
     .isp-block-notice a {
@@ -870,6 +875,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      mix-blend-mode: multiply;
     }
 
     .seal-img-wrap img {
@@ -877,7 +883,6 @@
       height: 100%;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: contrast(1.12);
       opacity: 0.88;
     }
 
@@ -1284,7 +1289,7 @@
       <div class="more-camino-wrap">
         <a class="more-camino-link" href="https://neocatechumenaleiter.org/" target="_blank" rel="noopener noreferrer" onclick="checkCaminoSiteReachability(true)">Quisiera saber más del Camino</a>
         <div id="camino-isp-notice" class="isp-block-notice" role="status" aria-live="polite">
-          <strong>⚠️ Aviso técnico sobre el acceso a la web oficial:</strong>
+          <span class="notice-title">⚠️ Aviso técnico sobre el acceso a la web oficial:</span>
           En este momento tu operadora de internet está bloqueando temporalmente el acceso a <em>neocatechumenaleiter.org</em> debido a los bloqueos de direcciones IP compartidas de <strong>Cloudflare</strong> que aplican las operadoras en España durante las retransmisiones de fútbol. La web oficial es totalmente segura y vuelve a estar operativa en cuanto finalizan los encuentros deportivos (mientras dure el bloqueo de tu operadora, también puedes consultar la información general en <a href="https://es.wikipedia.org/wiki/Camino_Neocatecumenal" target="_blank" rel="noopener noreferrer">Wikipedia</a>).
         </div>
       </div>
@@ -1463,8 +1468,57 @@
         });
     }
 
+    /* Elimina automáticamente el fondo blanco/crema de sello-camino.png dejándolo 100% transparente */
+    function makeSealTransparent(imgEl) {
+      if (!imgEl || imgEl.dataset.transparentProcessed === '1' || !imgEl.naturalWidth) return;
+      try {
+        const canvas = document.createElement('canvas');
+        const w = imgEl.naturalWidth;
+        const h = imgEl.naturalHeight;
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imgEl, 0, 0);
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const data = imgData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+          if (luma > 240) {
+            data[i + 3] = 0; // Fondo blanco 100% transparente
+          } else {
+            // Trazo oscuro proporcionalmente opaco sin halo blanco
+            data[i] = 24;
+            data[i + 1] = 19;
+            data[i + 2] = 14;
+            data[i + 3] = Math.min(255, Math.round((255 - luma) * 1.15));
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+        const transparentDataUrl = canvas.toDataURL('image/png');
+        document.querySelectorAll('.subliminal-watermark, .panel-watermark, .seal-img-wrap img').forEach(el => {
+          el.dataset.transparentProcessed = '1';
+          el.src = transparentDataUrl;
+        });
+      } catch (e) {
+        // Si se abre en file:// local sin servidor, mix-blend-mode: multiply actúa de respaldo
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       checkCaminoSiteReachability(false);
+      const sealImgs = document.querySelectorAll('.seal-img-wrap img, .subliminal-watermark');
+      sealImgs.forEach(img => {
+        if (img.complete && img.naturalWidth) {
+          makeSealTransparent(img);
+        } else {
+          img.addEventListener('load', () => makeSealTransparent(img), { once: true });
+        }
+      });
     });
   </script>
 </body>
